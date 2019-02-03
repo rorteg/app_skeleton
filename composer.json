@@ -1,0 +1,25 @@
+{
+    "name": "rorteg/madeiramadeira",
+    "description": "Test Project",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Rafael Ortega Bueno",
+            "email": "rorteg@gmail.com"
+        }
+    ],
+    "require": {
+        "zendframework/zend-config": "^3.2",
+        "zendframework/zend-servicemanager": "^3.4",
+        "wikimedia/composer-merge-plugin": "*@dev"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "merge-plugin": {
+            "include": [
+                "app/code/*/composer.json"
+            ]
+        }
+    }
+}
