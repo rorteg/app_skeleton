@@ -28,10 +28,9 @@ interface ConnectionInterface
      *
      * @param string $table
      * @param array $parameters
-     * @param int $id
      * @return int
      */
-    public function update($table, $parameters, $id) : int;
+    public function update($table, $parameters) : int;
 
     /**
      * Db Insert

@@ -83,8 +83,9 @@ final class ConnectionTest extends TestCase
         $conn = $this->connection;
         $user = $conn->query('SELECT id FROM users WHERE email = "' . self::EMAIL_TEST . '"')->fetch();
         $userUpdate = $conn->update('users', [
-            'first_name' => 'Robson'
-        ], $user['id']);
+            'first_name' => 'Robson',
+            'id' => $user['id']
+        ]);
 
         $userUpdated = $conn->query('SELECT * FROM users WHERE email = "' . self::EMAIL_TEST . '"')->fetch();
 

@@ -6,6 +6,10 @@ namespace MadeiraMadeira\Db;
 
 use MadeiraMadeira\Db\Api\ConnectionInterface;
 
+/**
+ * Class Connection
+ * @package MadeiraMadeira\Db
+ */
 class Connection implements ConnectionInterface
 {
     /**
@@ -48,10 +52,9 @@ class Connection implements ConnectionInterface
      *
      * @param string $table
      * @param array $parameters
-     * @param int $id
      * @return int
      */
-    public function update($table, $parameters, $id): int
+    public function update($table, $parameters) : int
     {
         $conn = $this->pdo;
 
@@ -60,14 +63,14 @@ class Connection implements ConnectionInterface
         $arrayUpdate = [];
 
         foreach ($pdoFormatParams[self::KEY_COLUMNS] as $column) {
-            $arrayUpdate[] = $column . ' = :' . $column;
+            if ($column !== 'id') {
+                $arrayUpdate[] = $column . ' = :' . $column;
+            }
         }
 
         $updateQuery = $conn->prepare(
             'UPDATE ' . $table
             . ' SET ' . implode(',', $arrayUpdate) . ' WHERE id=:id');
-
-        $pdoFormatParams[self::KEY_VALUES_BIND][':id'] = $id;
 
         $updateQuery->execute($pdoFormatParams[self::KEY_VALUES_BIND]);
 
@@ -93,15 +96,10 @@ class Connection implements ConnectionInterface
             . implode(',', $pdoFormatParams[self::KEY_COLUMNS_KEYS]) . ')'
         );
 
-        try {
-            $insertQuery->execute($pdoFormatParams[self::KEY_VALUES_BIND]);
-            $lastId = $conn->lastInsertId();
 
-            return (int) $lastId;
-        } catch (\PDOException $e) {
-            echo $e->getMessage();
-        }
-
+        $insertQuery->execute($pdoFormatParams[self::KEY_VALUES_BIND]);
+        $lastId = $conn->lastInsertId();
+        return (int) $lastId;
     }
 
     /**
@@ -111,7 +109,7 @@ class Connection implements ConnectionInterface
      * @param int $id
      * @return bool
      */
-    public function delete($table, $id): bool
+    public function delete($table, $id) : bool
     {
         $conn = $this->pdo;
 
@@ -133,7 +131,7 @@ class Connection implements ConnectionInterface
      * @param array $parameters
      * @return array
      */
-    private function getPDOFormatParams($parameters)
+    private function getPDOFormatParams($parameters) : array
     {
         $columns = [];
         $columnsKeys = [];

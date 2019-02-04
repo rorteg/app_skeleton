@@ -1,6 +1,5 @@
 <?php
 
-
 use Phinx\Migration\AbstractMigration;
 
 class User extends AbstractMigration
@@ -36,6 +35,7 @@ class User extends AbstractMigration
         $table->addColumn('username', 'string', ['limit' => 50]);
         $table->addColumn('email', 'string', ['limit' => 100]);
         $table->addColumn('password', 'string', ['limit' => 100]);
+        $table->addColumn('password_salt', 'string', ['limit' => 100]);
         $table->addColumn('first_name', 'string', ['limit' => 100]);
         $table->addColumn('last_name', 'string', ['limit' => 100]);
         $table->addColumn('created', 'datetime');
