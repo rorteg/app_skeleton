@@ -15,6 +15,7 @@ interface UserInterface extends ModelInterface
     /**
      * Columns Keys
      */
+    const ID = 'id';
     const USERNAME = 'username';
     const EMAIL = 'email';
     const PASSWORD = 'password';
@@ -23,6 +24,11 @@ interface UserInterface extends ModelInterface
     const LAST_NAME = 'last_name';
     const CREATED = 'created';
     const UPDATED = 'updated';
+
+    /**
+     * @return int|string|bool
+     */
+    public function getId();
 
     /**
      * @param string $username

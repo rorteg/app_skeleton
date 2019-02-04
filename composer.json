@@ -11,10 +11,12 @@
     "require": {
         "php": "^7.1",
         "ext-pdo": "*",
+        "ext-json": "*",
         "zendframework/zend-config": "^3.2",
         "zendframework/zend-servicemanager": "^3.4",
         "wikimedia/composer-merge-plugin": "*@dev",
-        "robmorgan/phinx": "^0.10.6"
+        "robmorgan/phinx": "^0.10.6",
+        "altorouter/altorouter": "^1.2"
     },
     "require-dev": {
         "phpunit/phpunit": "^7.5"

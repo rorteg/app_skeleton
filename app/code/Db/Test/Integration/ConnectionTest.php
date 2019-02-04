@@ -7,6 +7,10 @@ namespace MadeiraMadeira\Test\Integration;
 use MadeiraMadeira\Db\Connection;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class ConnectionTest
+ * @package MadeiraMadeira\Test\Integration
+ */
 final class ConnectionTest extends TestCase
 {
     /**

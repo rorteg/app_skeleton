@@ -99,7 +99,7 @@ abstract class ModelAbstract implements ModelInterface
     public function getData($key = false)
     {
         if ($key) {
-            return $this->data[$key];
+            return isset($this->data[$key]) ? $this->data[$key] : false;
         }
 
         return $this->data;
@@ -116,19 +116,21 @@ abstract class ModelAbstract implements ModelInterface
                 // Update
 
                if (count($this->getData())) {
-                   $data = $this->getData();
-
-                   $this->connection->update(
+                   $id = $this->connection->update(
                        $this->getTableName(),
                        $this->getData()
                    );
+
+                   $this->setData('id', $id);
                }
             } else {
                 // New Records
-                $this->connection->insert(
+                $id = $this->connection->insert(
                     $this->getTableName(),
                     $this->getData()
                 );
+
+                $this->setData('id', $id);
             }
 
             return $this;

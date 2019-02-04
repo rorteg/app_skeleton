@@ -189,4 +189,24 @@ class User extends ModelAbstract implements UserInterface
 
         return $salt;
     }
+
+    /**
+     * @return int|string|bool
+     */
+    public function getId()
+    {
+        return $this->getData(self::ID);
+    }
+
+    /**
+     * @return $this
+     */
+    public function save(): ModelInterface
+    {
+        if (! $this->salt && ! $this->getPasswordSalt()) {
+            $this->setPassword($this->getData(self::PASSWORD));
+        }
+
+        return parent::save();
+    }
 }

@@ -8,6 +8,10 @@ use MadeiraMadeira\Db\Connection;
 use MadeiraMadeira\User\Model\User;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class UserTest
+ * @package MadeiraMadeira\User\Test\Model
+ */
 final class UserTest extends TestCase
 {
     private $userModel;

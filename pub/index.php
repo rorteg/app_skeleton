@@ -1,7 +1,11 @@
 <?php
 
+use MadeiraMadeira\Framework\App\Http;
+
 try {
-    $serviceManager = require __DIR__ . '/../app/bootstrap.php';
+    /** @var \Zend\ServiceManager\ServiceManager $serviceManager */
+    $serviceManager = require __DIR__ . '/app/bootstrap.php';
+
 } catch (\Exception $e) {
     echo <<<HTML
 <div style="font:12px/1.35em arial, helvetica, sans-serif;">
@@ -15,3 +19,6 @@ HTML;
     exit(1);
 }
 
+$bootstrap = \MadeiraMadeira\Framework\App\Bootstrap::create($serviceManager, BP);
+$application = $bootstrap->createApplication(Http::class, $bootstrap->getRoutes());
+$bootstrap->run($application);
