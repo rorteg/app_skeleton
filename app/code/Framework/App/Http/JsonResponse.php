@@ -4,17 +4,14 @@ declare(strict_types=1);
 
 namespace MadeiraMadeira\Framework\App\Http;
 
+use MadeiraMadeira\Framework\Api\Http\ResponseInterface;
+
 /**
  * Class JsonResponse
  * @package MadeiraMadeira\Framework\App\Htt
  */
-class JsonResponse
+class JsonResponse extends ResponseAbstract implements ResponseInterface
 {
-    /**
-     * @var string
-     */
-    private $code;
-
     /**
      * @var array
      */
@@ -32,25 +29,9 @@ class JsonResponse
     }
 
     /**
-     * @param string $code
-     */
-    public function setCode($code)
-    {
-        $this->code = $code;
-    }
-
-    /**
      * @return string
      */
-    public function getCode()
-    {
-        return $this->code;
-    }
-
-    /**
-     * @return string
-     */
-    public function sendResponse()
+    public function sendResponse() : string
     {
         // clear the old headers
         header_remove();
@@ -70,7 +51,8 @@ class JsonResponse
         // ok, validation error, or failure
         header('Status: '.$status[$this->getCode()]);
         // return the encoded json
-        return json_encode(array(
+
+        return (string)json_encode(array(
             'status' => $this->getCode() < 300, // success or not?
             'data' => $this->data
         ));

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace MadeiraMadeira\User\Model;
 
-use MadeiraMadeira\Framework\Api\Data\ModelInterface;
+use MadeiraMadeira\Framework\Model\Api\ModelInterface;
 use MadeiraMadeira\Framework\Model\ModelAbstract;
 use MadeiraMadeira\User\Api\Data\UserInterface;
 
@@ -15,9 +15,9 @@ use MadeiraMadeira\User\Api\Data\UserInterface;
 class User extends ModelAbstract implements UserInterface
 {
     /**
-     * @var string|bool
+     * @var string|null
      */
-    private $salt = false;
+    private $salt = null;
 
     /**
      * Get Db table name
@@ -69,6 +69,7 @@ class User extends ModelAbstract implements UserInterface
     /**
      * @param string $password
      * @return $this
+     * @throws \Exception
      */
     public function setPassword($password): ModelInterface
     {
@@ -96,11 +97,11 @@ class User extends ModelAbstract implements UserInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPasswordSalt(): string
+    public function getPasswordSalt(): ?string
     {
-        return $this->getData(self::PASSWORD_SALT);
+        return $this->getData(self::PASSWORD_SALT) ?: null;
     }
 
     /**
@@ -177,13 +178,14 @@ class User extends ModelAbstract implements UserInterface
 
     /**
      * @return string
+     * @throws \Exception
      */
     private function getSalt()
     {
         $salt = $this->salt;
 
-        if (! $this->salt) {
-            $salt = uniqid((string)mt_rand(), true);
+        if (is_null($this->salt)) {
+            $salt = password_hash($this->getPassword(), PASSWORD_DEFAULT);
             $this->salt = $salt;
         }
 
@@ -200,10 +202,11 @@ class User extends ModelAbstract implements UserInterface
 
     /**
      * @return $this
+     * @throws \Exception
      */
     public function save(): ModelInterface
     {
-        if (! $this->salt && ! $this->getPasswordSalt()) {
+        if (is_null($this->salt) && ! $this->getPasswordSalt()) {
             $this->setPassword($this->getData(self::PASSWORD));
         }
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace MadeiraMadeira\User\Api\Data;
 
-use MadeiraMadeira\Framework\Api\Data\ModelInterface;
+use MadeiraMadeira\Framework\Model\Api\ModelInterface;
 
 /**
  * Interface UserInterface
@@ -64,9 +64,9 @@ interface UserInterface extends ModelInterface
     public function getPassword() : string;
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPasswordSalt() : string;
+    public function getPasswordSalt() : ?string;
 
     /**
      * @param $firstName
@@ -111,5 +111,4 @@ interface UserInterface extends ModelInterface
      * @return string
      */
     public function getUpdate() : string;
-
 }

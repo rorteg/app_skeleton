@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace MadeiraMadeira\Framework\Api\Data;
+namespace MadeiraMadeira\Framework\Model\Api;
 
 /**
  * Interface ModelInterface
- * @package MadeiraMadeira\Framework\Api\Data
+ * @package MadeiraMadeira\Framework\Model\Api
  */
 interface ModelInterface
 {

@@ -26,7 +26,7 @@ final class ConnectionTest extends TestCase
         $dbConfig = $config['db'];
 
         $pdo = new \PDO($dbConfig['dns'], $dbConfig['username'], $dbConfig['password']);
-        $pdo->setAttribute(\PDO::ATTR_EMULATE_PREPARES, TRUE);
+        $pdo->setAttribute(\PDO::ATTR_EMULATE_PREPARES, true);
         $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         $this->connection = new Connection($pdo);
     }
@@ -37,7 +37,7 @@ final class ConnectionTest extends TestCase
         $dbConfig = $config['db'];
 
         $pdo = new \PDO($dbConfig['dns'], $dbConfig['username'], $dbConfig['password']);
-        $pdo->setAttribute(\PDO::ATTR_EMULATE_PREPARES, TRUE);
+        $pdo->setAttribute(\PDO::ATTR_EMULATE_PREPARES, true);
         $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         $conn = new Connection($pdo);
 
@@ -49,7 +49,6 @@ final class ConnectionTest extends TestCase
             $conn->bindParam(':email', $emailTest);
             $conn->execute();
         }
-
     }
 
     public function testInsert()

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace MadeiraMadeira\Framework\Model;
 
 use MadeiraMadeira\Db\Api\ConnectionInterface;
-use MadeiraMadeira\Framework\Api\Data\ModelInterface;
+use MadeiraMadeira\Framework\Model\Api\ModelInterface;
 
 /**
  * Class ModelAbstract
@@ -67,7 +67,6 @@ abstract class ModelAbstract implements ModelInterface
             if (! isset($this->data['id'])) {
                 $this->data = [];
             }
-
         } catch (\Exception $e) {
             echo $e->getMessage();
         }
@@ -111,18 +110,17 @@ abstract class ModelAbstract implements ModelInterface
     public function save() : ModelInterface
     {
         try {
-
             if (isset($this->data['id'])) {
                 // Update
 
-               if (count($this->getData())) {
-                   $id = $this->connection->update(
-                       $this->getTableName(),
-                       $this->getData()
-                   );
+                if (count($this->getData())) {
+                    $id = $this->connection->update(
+                        $this->getTableName(),
+                        $this->getData()
+                    );
 
-                   $this->setData('id', $id);
-               }
+                    $this->setData('id', $id);
+                }
             } else {
                 // New Records
                 $id = $this->connection->insert(
@@ -134,10 +132,8 @@ abstract class ModelAbstract implements ModelInterface
             }
 
             return $this;
-
         } catch (\Exception $e) {
             echo $e->getMessage();
         }
-
     }
 }

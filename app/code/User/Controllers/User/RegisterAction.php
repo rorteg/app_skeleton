@@ -4,14 +4,16 @@ declare(strict_types=1);
 
 namespace MadeiraMadeira\User\Controllers\User;
 
+use MadeiraMadeira\Framework\Api\Http\ResponseInterface;
 use MadeiraMadeira\Framework\App\Http\JsonResponse;
+use MadeiraMadeira\Framework\Controller\ActionAbstract;
 use MadeiraMadeira\User\Model\User;
 
 /**
  * Class RegisterAction
  * @package MadeiraMadeira\User\Controllers\User
  */
-class RegisterAction
+class RegisterAction extends ActionAbstract
 {
     /**
      * @var User
@@ -27,20 +29,22 @@ class RegisterAction
         $this->userModel = $userModel;
     }
 
-    public function __invoke()
+    /**
+     * @return \MadeiraMadeira\Framework\Api\Http\ResponseInterface
+     * @throws \Exception
+     */
+    public function __invoke() : ResponseInterface
     {
         $postParams = filter_input_array(INPUT_POST);
 
-        if (
-            ! isset($postParams['username'])
+        if (! isset($postParams['username'])
             || ! isset($postParams['email'])
             || ! isset($postParams['first_name'])
             || ! isset($postParams['last_name'])
             || ! isset($postParams['password'])
         ) {
             $response = new JsonResponse(['message' => 'Não foi possível registrar.'], 400);
-            echo $response->sendResponse();
-            exit(1);
+            return $response;
         }
 
         $user = $this->userModel->setData($postParams);
@@ -51,8 +55,7 @@ class RegisterAction
                 'user' => $user->getData()
             ], 201);
 
-            echo $response->sendResponse();
-            exit(1);
+            return $response;
         }
     }
 }

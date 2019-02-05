@@ -41,10 +41,10 @@ if (file_exists($a = __DIR__ . '/../../../autoload.php')) {
 date_default_timezone_set('America/Sao_Paulo');
 
 // Modules Settings
-$modulesConfig = Factory::fromFiles(glob('app/code/*/config/*.*'), true);
+$modulesConfig = Factory::fromFiles(glob(BP . '/app/code/*/config/*.*'), true);
 
 // Global Settings
-$globalConfig = Factory::fromFiles(glob('app/config/*.*'), true);
+$globalConfig = Factory::fromFiles(glob(BP . '/app/config/*.*'), true);
 $configMerged = $modulesConfig->merge($globalConfig)->toArray();
 
 $serviceManager = new ServiceManager();

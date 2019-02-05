@@ -70,7 +70,8 @@ class Connection implements ConnectionInterface
 
         $updateQuery = $conn->prepare(
             'UPDATE ' . $table
-            . ' SET ' . implode(',', $arrayUpdate) . ' WHERE id=:id');
+            . ' SET ' . implode(',', $arrayUpdate) . ' WHERE id=:id'
+        );
 
         $updateQuery->execute($pdoFormatParams[self::KEY_VALUES_BIND]);
 

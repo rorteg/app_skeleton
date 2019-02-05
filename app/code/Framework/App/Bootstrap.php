@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace MadeiraMadeira\Framework\App;
 
 use MadeiraMadeira\Framework\Api\AppInterface;
-use Psr\Http\Message\ResponseInterface;
 use Zend\ServiceManager\ServiceManager;
 
 /**

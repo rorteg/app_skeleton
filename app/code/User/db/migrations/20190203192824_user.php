@@ -42,6 +42,5 @@ class User extends AbstractMigration
         $table->addColumn('updated', 'datetime', ['null' => true]);
         $table->addIndex(['username', 'email'], ['unique' => true]);
         $table->save();
-
     }
 }

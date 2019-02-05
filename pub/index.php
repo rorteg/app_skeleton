@@ -4,7 +4,7 @@ use MadeiraMadeira\Framework\App\Http;
 
 try {
     /** @var \Zend\ServiceManager\ServiceManager $serviceManager */
-    $serviceManager = require __DIR__ . '/app/bootstrap.php';
+    $serviceManager = require dirname(__DIR__) . '/app/bootstrap.php';
 
 } catch (\Exception $e) {
     echo <<<HTML
