@@ -17,3 +17,5 @@ atlassian*
 /node_modules
 /vendor/*
 !/vendor/.htaccess
+/pub/assets/cache/*
+!/pub/assets/cache

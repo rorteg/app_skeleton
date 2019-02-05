@@ -17,7 +17,8 @@
         "wikimedia/composer-merge-plugin": "*@dev",
         "robmorgan/phinx": "^0.10.6",
         "altorouter/altorouter": "^1.2",
-        "twig/twig": "^2.0"
+        "twig/twig": "^2.0",
+        "odan/twig-assets": "^2.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^7.5",

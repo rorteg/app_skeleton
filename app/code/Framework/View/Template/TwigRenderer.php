@@ -41,8 +41,22 @@ class TwigRenderer implements TemplateRendererInterface
         $this->viewConfig = $viewConfig;
         $this->template = $this->createTemplate($this->getDefaultLoader());
         $this->twigLoader = $this->template->getLoader();
-
+        $this->addTwigExtensions();
         $this->addConfigPaths();
+    }
+
+    /**
+     * Twig Extensions by config
+     */
+    private function addTwigExtensions() : void
+    {
+        $config = $this->viewConfig;
+
+        if (isset($config['twig_extensions'])) {
+            foreach ($config['twig_extensions'] as $extension => $options) {
+                $this->template->addExtension(new $extension($this->template, $options));
+            }
+        }
     }
 
     /**
