@@ -42,14 +42,15 @@ class Http implements AppInterface
         // match current request url
         $match = $router->match();
 
-        if (! ($match['target'] instanceof ActionInterface)) {
-            throw new \Exception(
-                'The HTTP app expects Actions to implement ActionInterface.'
-            );
-        }
-
         // call closure or throw 404 status
         if ($match && is_callable($match['target'])) {
+
+            if (! ($match['target'] instanceof ActionInterface)) {
+                throw new \Exception(
+                    'The HTTP app expects Actions to implement ActionInterface.'
+                );
+            }
+
             $response = call_user_func_array($match['target'], $match['params']);
 
             if (! ($response instanceof ResponseInterface)) {

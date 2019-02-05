@@ -1,0 +1,15 @@
+{% extends "@app/layout.html" %}
+
+{% block head %}
+{{ parent() }}
+{{ assets({files: ['@app/assets/starter-template.css']}) }}
+{% endblock %}
+
+{% block title %}Wellcome!{% endblock %}
+
+{% block content %}
+<div class="starter-template">
+    <h1>Madeira Madeira Project Example</h1>
+    <p class="lead"></p>
+</div>
+{% endblock %}
