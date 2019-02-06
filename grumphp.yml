@@ -2,33 +2,12 @@ parameters:
     git_dir: .
     bin_dir: vendor/bin
     tasks:
-        ant: ~
-        atoum: ~
-        behat: ~
-        brunch: ~
-        codeception: ~
         composer: ~
-        deptrac: ~
         file_size: ~
-        infection: ~
         commit_message: ~
         jsonlint: ~
-        kahlan: ~
-        phing: ~
-        php7cc: ~
-        phpcpd: ~
-        phpcs: ~
-        phpcsfixer: ~
-        phpcsfixer2: ~
-        phpmd: ~
-        phpmnd: ~
-        phpspec: ~
-        phpstan: ~
         phpunit: ~
-        phpunitbridge: ~
         phpversion: ~
-        progpilot: ~
-        psalm: ~
         shell: ~
         xmllint: ~
         yamllint: ~
