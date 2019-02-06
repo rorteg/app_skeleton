@@ -8,10 +8,10 @@ parameters:
         brunch: ~
         codeception: ~
         composer: ~
-        composer_require_checker: ~
         deptrac: ~
         file_size: ~
         infection: ~
+        commit_message: ~
         jsonlint: ~
         kahlan: ~
         phing: ~
@@ -29,8 +29,6 @@ parameters:
         phpversion: ~
         progpilot: ~
         psalm: ~
-        robo: ~
-        securitychecker: ~
         shell: ~
         xmllint: ~
         yamllint: ~
