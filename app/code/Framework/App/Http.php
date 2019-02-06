@@ -7,6 +7,7 @@ namespace MadeiraMadeira\Framework\App;
 use MadeiraMadeira\Framework\Api\AppInterface;
 use MadeiraMadeira\Framework\Controller\Api\ActionInterface;
 use MadeiraMadeira\Framework\Api\Http\ResponseInterface;
+use Zend\ServiceManager\ServiceManager;
 
 /**
  * Class Http
@@ -20,12 +21,19 @@ class Http implements AppInterface
     private $routeConfig = [];
 
     /**
+     * @var ServiceManager
+     */
+    private $serviceManager;
+
+    /**
      * Http constructor.
      * @param $routeConfig
+     * @param ServiceManager $serviceManager
      */
-    public function __construct($routeConfig)
+    public function __construct($routeConfig, ServiceManager $serviceManager)
     {
         $this->routeConfig = $routeConfig;
+        $this->serviceManager = $serviceManager;
     }
 
     /**
@@ -42,9 +50,12 @@ class Http implements AppInterface
         // match current request url
         $match = $router->match();
 
+        if ($this->serviceManager->has($match['target'])) {
+            $match['target'] = $this->serviceManager->get($match['target']);
+        }
+
         // call closure or throw 404 status
         if ($match && is_callable($match['target'])) {
-
             if (! ($match['target'] instanceof ActionInterface)) {
                 throw new \Exception(
                     'The HTTP app expects Actions to implement ActionInterface.'

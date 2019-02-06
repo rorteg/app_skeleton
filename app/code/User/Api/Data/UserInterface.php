@@ -19,7 +19,6 @@ interface UserInterface extends ModelInterface
     const USERNAME = 'username';
     const EMAIL = 'email';
     const PASSWORD = 'password';
-    const PASSWORD_SALT = 'password_salt';
     const FIRST_NAME = 'first_name';
     const LAST_NAME = 'last_name';
     const CREATED = 'created';
@@ -62,11 +61,6 @@ interface UserInterface extends ModelInterface
      * @return string
      */
     public function getPassword() : string;
-
-    /**
-     * @return string|null
-     */
-    public function getPasswordSalt() : ?string;
 
     /**
      * @param $firstName

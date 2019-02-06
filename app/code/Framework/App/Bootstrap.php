@@ -53,7 +53,7 @@ class Bootstrap
     public function createApplication($type, $arguments = [])
     {
         try {
-            $application = new $type($arguments);
+            $application = new $type($arguments, $this->serviceManager);
             if (!($application instanceof AppInterface)) {
                 throw new \InvalidArgumentException("The provided class doesn't implement AppInterface: {$type}");
             }
@@ -83,19 +83,7 @@ class Bootstrap
     {
         $routes = $this->serviceManager->get('config')['routes'];
 
-        $routesUpdated = array_map(function ($route) {
-            if (is_string($route[2])) {
-                if ($this->serviceManager->has($route[2])) {
-                    $route[2] = $this->serviceManager->get($route[2]);
-                } else {
-                    $route[2] = new $route[2];
-                }
-            }
-
-            return $route;
-        }, $routes);
-
-        return $routesUpdated;
+        return $routes;
     }
 
     /**

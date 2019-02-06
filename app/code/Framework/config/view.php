@@ -14,6 +14,11 @@ return [
                 'cache_lifetime' => 0,
                 'minify' => 1
             ]
+        ],
+        'twig_functions' => [
+            'flash_message' => function () {
+                return \MadeiraMadeira\Framework\Session\FlashMessage::flash();
+            }
         ]
     ]
 ];

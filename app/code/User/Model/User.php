@@ -15,9 +15,9 @@ use MadeiraMadeira\User\Api\Data\UserInterface;
 class User extends ModelAbstract implements UserInterface
 {
     /**
-     * @var string|null
+     * @var bool
      */
-    private $salt = null;
+    private $isPasswordEncrypt = false;
 
     /**
      * Get Db table name
@@ -73,8 +73,8 @@ class User extends ModelAbstract implements UserInterface
      */
     public function setPassword($password): ModelInterface
     {
-        $this->setData(self::PASSWORD, md5($this->getSalt() . $password));
-        $this->setPasswordSalt($this->getSalt());
+        $this->setData(self::PASSWORD, password_hash($password, PASSWORD_DEFAULT));
+        $this->isPasswordEncrypt = true;
         return $this;
     }
 
@@ -84,24 +84,6 @@ class User extends ModelAbstract implements UserInterface
     public function getPassword(): string
     {
         return $this->getData(self::PASSWORD);
-    }
-
-    /**
-     * @param string $passwordSalt
-     * @return $this
-     */
-    private function setPasswordSalt($passwordSalt): ModelInterface
-    {
-        $this->setData(self::PASSWORD_SALT, $passwordSalt);
-        return $this;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getPasswordSalt(): ?string
-    {
-        return $this->getData(self::PASSWORD_SALT) ?: null;
     }
 
     /**
@@ -177,22 +159,6 @@ class User extends ModelAbstract implements UserInterface
     }
 
     /**
-     * @return string
-     * @throws \Exception
-     */
-    private function getSalt()
-    {
-        $salt = $this->salt;
-
-        if (is_null($this->salt)) {
-            $salt = password_hash($this->getPassword(), PASSWORD_DEFAULT);
-            $this->salt = $salt;
-        }
-
-        return $salt;
-    }
-
-    /**
      * @return int|string|bool
      */
     public function getId()
@@ -206,7 +172,10 @@ class User extends ModelAbstract implements UserInterface
      */
     public function save(): ModelInterface
     {
-        if (is_null($this->salt) && ! $this->getPasswordSalt()) {
+        $passwordInfo = password_get_info($this->getData(self::PASSWORD));
+        if (! $this->isPasswordEncrypt
+            && $this->getData(self::PASSWORD)
+            && $passwordInfo['algo'] == 0) {
             $this->setPassword($this->getData(self::PASSWORD));
         }
 

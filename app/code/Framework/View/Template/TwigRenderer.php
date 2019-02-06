@@ -7,6 +7,7 @@ namespace MadeiraMadeira\Framework\View\Template;
 use MadeiraMadeira\Framework\View\Api\TemplateRendererInterface;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
+use Twig\TwigFunction;
 
 class TwigRenderer implements TemplateRendererInterface
 {
@@ -42,6 +43,7 @@ class TwigRenderer implements TemplateRendererInterface
         $this->template = $this->createTemplate($this->getDefaultLoader());
         $this->twigLoader = $this->template->getLoader();
         $this->addTwigExtensions();
+        $this->addTwigFunctions();
         $this->addConfigPaths();
     }
 
@@ -55,6 +57,23 @@ class TwigRenderer implements TemplateRendererInterface
         if (isset($config['twig_extensions'])) {
             foreach ($config['twig_extensions'] as $extension => $options) {
                 $this->template->addExtension(new $extension($this->template, $options));
+            }
+        }
+    }
+
+    /**
+     * Twig Functions by config
+     */
+    private function addTwigFunctions() : void
+    {
+        $config = $this->viewConfig;
+
+        if (isset($config['twig_functions'])) {
+            foreach ($config['twig_functions'] as $name => $function) {
+                if (is_callable($function)) {
+                    $fn = new TwigFunction($name, $function);
+                    $this->template->addFunction($fn);
+                }
             }
         }
     }
