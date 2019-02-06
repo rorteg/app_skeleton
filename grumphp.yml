@@ -6,10 +6,12 @@ parameters:
         file_size: ~
         commit_message: ~
         jsonlint: ~
-        phpunit: ~
         phpversion: ~
         shell: ~
         xmllint: ~
         yamllint: ~
         phpcs:
             standard: ['PSR2']
+        phpunit:
+            config_file: 'phpunit.xml'
+            testsuite: 'Unit'
