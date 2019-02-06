@@ -8,6 +8,7 @@ use MadeiraMadeira\Admin\Controllers\AdminActionAbstract;
 use MadeiraMadeira\Auth\Api\AuthenticateInterface;
 use MadeiraMadeira\Framework\Api\Http\ResponseInterface;
 use MadeiraMadeira\Framework\App\Http\HtmlResponse;
+use MadeiraMadeira\Framework\Session\FlashMessage;
 use MadeiraMadeira\Framework\View\Api\TemplateRendererInterface;
 
 /**
@@ -29,8 +30,7 @@ class IndexAction extends AdminActionAbstract
     public function __construct(
         AuthenticateInterface $authenticate,
         TemplateRendererInterface $templateRenderer
-    )
-    {
+    ) {
         parent::__construct($authenticate);
         $this->templateRenderer = $templateRenderer;
     }
@@ -40,6 +40,12 @@ class IndexAction extends AdminActionAbstract
      */
     public function __invoke(): ResponseInterface
     {
+        FlashMessage::addNotificationMessage(
+            FlashMessage::TYPE_INFO,
+            'Wellcome!',
+            '',
+            'Madeira Madeira Project'
+        );
         $html = $this->templateRenderer->render('@admin/index.html');
         return new HtmlResponse($html);
     }

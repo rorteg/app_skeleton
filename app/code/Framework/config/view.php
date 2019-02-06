@@ -8,7 +8,7 @@ return [
             \Odan\Twig\TwigAssetsExtension::class => [
                 'path' => BP . '/pub/assets/cache',
                 'path_chmod' => 0750,
-                'url_base_path' => 'assets/cache/',
+                'url_base_path' => '/assets/cache/',
                 'cache_path' => BP . '/pub/assets/temp',
                 'cache_name' => 'assets-cache',
                 'cache_lifetime' => 0,

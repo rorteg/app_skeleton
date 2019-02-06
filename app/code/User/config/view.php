@@ -3,8 +3,8 @@
 return [
     'view' => [
         'paths' => [
-            'admin' => [
-                BP . '/app/code/Admin/view/templates'
+            'user' => [
+                BP . '/app/code/User/view/templates'
             ]
         ]
     ]

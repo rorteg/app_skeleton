@@ -8,33 +8,35 @@ API.txt for details.
 
 */
 
-(function($) {
+(function ($) {
 
     var options = {
         xaxis: {
-            timezone: null,		// "browser" for local to the client or timezone for timezone-js
-            timeformat: null,	// format string to use
-            twelveHourClock: false,	// 12 or 24 time in time mode
-            monthNames: null	// list of names of months
+            timezone: null,     // "browser" for local to the client or timezone for timezone-js
+            timeformat: null,   // format string to use
+            twelveHourClock: false, // 12 or 24 time in time mode
+            monthNames: null    // list of names of months
         }
     };
 
     // round to nearby lower multiple of base
 
-    function floorInBase(n, base) {
+    function floorInBase(n, base)
+    {
         return base * Math.floor(n / base);
     }
 
     // Returns a string with the date d formatted according to fmt.
     // A subset of the Open Group's strftime format is supported.
 
-    function formatDate(d, fmt, monthNames, dayNames) {
+    function formatDate(d, fmt, monthNames, dayNames)
+    {
 
         if (typeof d.strftime == "function") {
             return d.strftime(fmt);
         }
 
-        var leftPad = function(n, pad) {
+        var leftPad = function (n, pad) {
             n = "" + n;
             pad = "" + (pad == null ? "0" : pad);
             return n.length == 1 ? pad + n : n;
@@ -64,7 +66,6 @@ API.txt for details.
         }
 
         for (var i = 0; i < fmt.length; ++i) {
-
             var c = fmt.charAt(i);
 
             if (escape) {
@@ -73,7 +74,7 @@ API.txt for details.
                     case 'b': c = "" + monthNames[d.getMonth()]; break;
                     case 'd': c = leftPad(d.getDate()); break;
                     case 'e': c = leftPad(d.getDate(), " "); break;
-                    case 'h':	// For back-compat with 0.7; remove in 1.0
+                    case 'h':   // For back-compat with 0.7; remove in 1.0
                     case 'H': c = leftPad(hours); break;
                     case 'I': c = leftPad(hours12); break;
                     case 'l': c = leftPad(hours12, " "); break;
@@ -108,10 +109,12 @@ API.txt for details.
     // of time zones.  This is done through a wrapper that only calls the UTC
     // versions of the accessor methods.
 
-    function makeUtcWrapper(d) {
+    function makeUtcWrapper(d)
+    {
 
-        function addProxyMethod(sourceObj, sourceMethod, targetObj, targetMethod) {
-            sourceObj[sourceMethod] = function() {
+        function addProxyMethod(sourceObj, sourceMethod, targetObj, targetMethod)
+        {
+            sourceObj[sourceMethod] = function () {
                 return targetObj[targetMethod].apply(targetObj, arguments);
             };
         };
@@ -142,7 +145,8 @@ API.txt for details.
     // select time zone strategy.  This returns a date-like object tied to the
     // desired timezone
 
-    function dateGenerator(ts, opts) {
+    function dateGenerator(ts, opts)
+    {
         if (opts.timezone == "browser") {
             return new Date(ts);
         } else if (!opts.timezone || opts.timezone == "utc") {
@@ -194,14 +198,15 @@ API.txt for details.
     var specQuarters = baseSpec.concat([[1, "quarter"], [2, "quarter"],
         [1, "year"]]);
 
-    function init(plot) {
+    function init(plot)
+    {
         plot.hooks.processOptions.push(function (plot, options) {
-            $.each(plot.getAxes(), function(axisName, axis) {
+            $.each(plot.getAxes(), function (axisName, axis) {
 
                 var opts = axis.options;
 
                 if (opts.mode == "time") {
-                    axis.tickGenerator = function(axis) {
+                    axis.tickGenerator = function (axis) {
 
                         var ticks = [];
                         var d = dateGenerator(axis.min, opts);
@@ -237,14 +242,12 @@ API.txt for details.
                         // special-case the possibility of several years
 
                         if (unit == "year") {
-
                             // if given a minTickSize in years, just use it,
                             // ensuring that it's an integer
 
                             if (opts.minTickSize != null && opts.minTickSize[1] == "year") {
                                 size = Math.floor(opts.minTickSize[0]);
                             } else {
-
                                 var magn = Math.pow(10, Math.floor(Math.log(axis.delta / timeUnitSize.year) / Math.LN10));
                                 var norm = (axis.delta / timeUnitSize.year) / magn;
 
@@ -283,8 +286,10 @@ API.txt for details.
                         } else if (unit == "month") {
                             d.setMonth(floorInBase(d.getMonth(), tickSize));
                         } else if (unit == "quarter") {
-                            d.setMonth(3 * floorInBase(d.getMonth() / 3,
-                                tickSize));
+                            d.setMonth(3 * floorInBase(
+                                d.getMonth() / 3,
+                                tickSize
+                            ));
                         } else if (unit == "year") {
                             d.setFullYear(floorInBase(d.getFullYear(), tickSize));
                         }
@@ -320,14 +325,12 @@ API.txt for details.
                         var prev;
 
                         do {
-
                             prev = v;
                             v = d.getTime();
                             ticks.push(v);
 
                             if (unit == "month" || unit == "quarter") {
                                 if (tickSize < 1) {
-
                                     // a bit complicated - we'll divide the
                                     // month/quarter up but we need to take
                                     // care of fractions so we don't end up in

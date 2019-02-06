@@ -75,4 +75,54 @@ class FlashMessage
         echo $messages;
         return null;
     }
+
+    /**
+     * @param string $type Type (primary,secondary,success,danger,warning,info,light,dark)
+     * @param string $message Message
+     * @param string $strong
+     * @param string $title Title
+     */
+    public static function addNotificationMessage($type, $message, $strong = '', $title = '') : void
+    {
+        Session::sessionStart();
+
+        $flashMessage = [
+            'type' => $type,
+            'title' => $title,
+            'strong' => $strong,
+            'message' => $message
+        ];
+
+        if (! isset($_SESSION['flash_notification'])) {
+            $_SESSION['flash_notification'] = [
+                $flashMessage
+            ];
+        } else {
+            $_SESSION['flash_notification'][] = $flashMessage;
+        }
+    }
+
+    public static function flashNotification() : ?string
+    {
+        Session::sessionStart();
+        $output = '';
+
+        if (isset($_SESSION['flash_notification'])) {
+            $output .= '<script type="text/javascript">';
+
+            foreach ($_SESSION['flash_notification'] as $flashMessage) {
+                $output .= 'toastr.'
+                    . $flashMessage['type'] . '("'
+                    . $flashMessage['message'] . '", "'
+                    . $flashMessage['title'] . '");';
+            }
+
+            $output .= '</script>';
+
+            unset($_SESSION['flash_notification']);
+        }
+
+        echo $output;
+        return null;
+    }
 }

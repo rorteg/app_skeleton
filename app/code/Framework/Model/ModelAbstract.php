@@ -136,4 +136,24 @@ abstract class ModelAbstract implements ModelInterface
             echo $e->getMessage();
         }
     }
+
+    /**
+     * Delete entity
+     * @return bool
+     */
+    public function delete() : bool
+    {
+        try {
+            $this->connection->delete(
+                $this->getTableName(),
+                $this->getData('id')
+            );
+
+            return true;
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
+
+        return false;
+    }
 }

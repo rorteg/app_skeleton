@@ -6,8 +6,10 @@ namespace MadeiraMadeira\User\Controllers\Admin;
 
 use MadeiraMadeira\Admin\Controllers\AdminActionAbstract;
 use MadeiraMadeira\Auth\Api\AuthenticateInterface;
+use MadeiraMadeira\Db\Api\ConnectionInterface;
 use MadeiraMadeira\Framework\Api\Http\ResponseInterface;
-use MadeiraMadeira\User\Api\Data\UserInterface;
+use MadeiraMadeira\Framework\App\Http\HtmlResponse;
+use MadeiraMadeira\Framework\View\Api\TemplateRendererInterface;
 
 /**
  * Class UserListAction
@@ -16,22 +18,29 @@ use MadeiraMadeira\User\Api\Data\UserInterface;
 class UserListAction extends AdminActionAbstract
 {
     /**
-     * @var UserInterface
+     * @var TemplateRendererInterface
      */
-    private $user;
+    private $templateRenderer;
 
     /**
-     * UserListAction constructor.
-     * @param UserInterface $user
+     * @var ConnectionInterface
+     */
+    private $connection;
+
+    /**
+     * UserListAction constructor
+     * @param TemplateRendererInterface $templateRenderer
+     * @param ConnectionInterface $connection
      * @param AuthenticateInterface $authenticate
      */
     public function __construct(
-        UserInterface $user,
+        TemplateRendererInterface $templateRenderer,
+        ConnectionInterface $connection,
         AuthenticateInterface $authenticate
-    )
-    {
+    ) {
         parent::__construct($authenticate);
-        $this->user = $user;
+        $this->templateRenderer = $templateRenderer;
+        $this->connection = $connection;
     }
 
     /**
@@ -39,6 +48,18 @@ class UserListAction extends AdminActionAbstract
      */
     public function __invoke(): ResponseInterface
     {
-        // TODO: Implement __invoke() method.
+        $users = $this->connection->query(
+            'SELECT id, username, email, first_name, last_name from users',
+            []
+        )->fetchAll();
+
+        return new HtmlResponse(
+            $this->templateRenderer->render(
+                '@user/admin/user_list.html',
+                [
+                    'users' => $users
+                ]
+            )
+        );
     }
 }

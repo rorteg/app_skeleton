@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
     // we use an inline data source in the example, usually data would
     // be fetched from a server
     // ==============================================================
@@ -7,8 +7,11 @@ $(function() {
     var data = [5, 10, 15, 20, 15, 30, 40],
         totalPoints = 100;
 
-    function getRandomData() {
-        if (data.length > 0) data = data.slice(1);
+    function getRandomData()
+    {
+        if (data.length > 0) {
+            data = data.slice(1);
+        }
         // Do a random walk
         while (data.length < totalPoints) {
             var prev = data.length > 0 ? data[data.length - 1] : 10,
@@ -29,7 +32,7 @@ $(function() {
     }
     // Set up the control widget
     var updateInterval = 1000;
-    $("#updateInterval").val(updateInterval).change(function() {
+    $("#updateInterval").val(updateInterval).change(function () {
         var v = $(this).val();
         if (v && !isNaN(+v)) {
             updateInterval = +v;
@@ -67,11 +70,12 @@ $(function() {
             defaultTheme: false
         }
     });
-    window.onresize = function(event) {
+    window.onresize = function (event) {
         $.plot($("#real-time"), [getRandomData()]);
     }
 
-    function update() {
+    function update()
+    {
         plot.setData([getRandomData()]);
         // Since the axes don't change, we don't need to call plot.setupGrid()
         plot.draw();
@@ -83,7 +87,8 @@ $(function() {
     var offset = 0;
     plot1();
 
-    function plot1() {
+    function plot1()
+    {
         var sin = []
             , cos = [];
         for (var i = 0; i < 12; i += 0.2) {
@@ -126,8 +131,8 @@ $(function() {
             data: sin
             , label: "sin(x)"
             , }, {
-            data: cos
-            , label: "cos(x)"
+                data: cos
+                , label: "cos(x)"
         }], options);
     }
 

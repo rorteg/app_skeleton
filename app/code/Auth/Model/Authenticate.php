@@ -72,7 +72,8 @@ class Authenticate implements AuthenticateInterface
                 'username' => $user->getUsername(),
                 'first_name' => $user->getFirstName(),
                 'last_name' => $user->getLastName(),
-                'email' => $user->getEmail()
+                'email' => $user->getEmail(),
+                'id' => $user->getId()
             ];
 
             $_SESSION['user'] = $userData;

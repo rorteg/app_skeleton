@@ -56,10 +56,10 @@
             "./vendor/bin/phpunit --testsuite='Integration' --colors=always"
         ],
         "code:check": [
-            "./vendor/bin/phpcs --standard=PSR2 --ignore=app/*/migrations,app/*/seeds,app/bootstrap.php app/"
+            "./vendor/bin/phpcs --standard=PSR2 --ignore=app/*/migrations,app/*/seeds,app/bootstrap.php,app/*/*/view app/"
         ],
         "code:fix": [
-            "./vendor/bin/phpcbf --standard=PSR2 --ignore=app/*/migrations,app/*/seeds,app/bootstrap.php app/"
+            "./vendor/bin/phpcbf --standard=PSR2 --ignore=app/*/migrations,app/*/seeds,app/bootstrap.php,app/*/*/view app/"
         ]
     }
 }

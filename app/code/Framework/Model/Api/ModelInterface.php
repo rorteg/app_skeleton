@@ -43,4 +43,10 @@ interface ModelInterface
      * @return $this
      */
     public function save() : ModelInterface;
+
+    /**
+     * Delete entity
+     * @return bool
+     */
+    public function delete() : bool;
 }
