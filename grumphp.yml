@@ -1,0 +1,36 @@
+parameters:
+    git_dir: .
+    bin_dir: vendor/bin
+    tasks:
+        ant: ~
+        atoum: ~
+        behat: ~
+        brunch: ~
+        codeception: ~
+        composer: ~
+        composer_require_checker: ~
+        deptrac: ~
+        file_size: ~
+        infection: ~
+        jsonlint: ~
+        kahlan: ~
+        phing: ~
+        php7cc: ~
+        phpcpd: ~
+        phpcs: ~
+        phpcsfixer: ~
+        phpcsfixer2: ~
+        phpmd: ~
+        phpmnd: ~
+        phpspec: ~
+        phpstan: ~
+        phpunit: ~
+        phpunitbridge: ~
+        phpversion: ~
+        progpilot: ~
+        psalm: ~
+        robo: ~
+        securitychecker: ~
+        shell: ~
+        xmllint: ~
+        yamllint: ~
