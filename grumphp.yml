@@ -11,3 +11,5 @@ parameters:
         shell: ~
         xmllint: ~
         yamllint: ~
+        phpcs:
+            standard: ['PSR2']
