@@ -1,7 +1,10 @@
 # app_skeleton
+[![Build Status](https://travis-ci.org/rorteg/app_skeleton.svg?branch=master)](https://travis-ci.org/rorteg/app_skeleton)
 
 ## Requirements
-* php ^7.1
+* PHP ^7.1
+* PHP PDO extension
+* PHP json extension
 * node/npm
 
 ------
