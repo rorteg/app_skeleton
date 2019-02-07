@@ -1,4 +1,4 @@
-# app_skeleton
+# Skeleton Project
 [![Build Status](https://travis-ci.org/rorteg/app_skeleton.svg?branch=master)](https://travis-ci.org/rorteg/app_skeleton)
 
 ## Requirements
