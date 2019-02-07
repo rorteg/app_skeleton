@@ -11,7 +11,7 @@ environments:
         host: localhost
         name: madeiramadeira_dev
         user: root
-        pass: 'magento'
+        pass: ''
         port: 3306
         charset: utf8
 

@@ -2,7 +2,7 @@
 
 $host = 'localhost';
 $username = 'root';
-$password = 'magento';
+$password = '';
 $database = 'madeiramadeira_dev';
 
 return [
