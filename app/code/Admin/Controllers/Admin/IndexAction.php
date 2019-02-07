@@ -42,7 +42,7 @@ class IndexAction extends AdminActionAbstract
     {
         FlashMessage::addNotificationMessage(
             FlashMessage::TYPE_INFO,
-            'Wellcome!',
+            'Welcome!',
             '',
             'Project Example'
         );
