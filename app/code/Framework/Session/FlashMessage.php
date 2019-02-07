@@ -15,6 +15,7 @@ class FlashMessage
     const TYPE_LIGHT = 'light';
     const TYPE_DART = 'dark';
 
+
     /**
      * @param string $type Type (primary,secondary,success,danger,warning,info,light,dark)
      * @param string $message Message
@@ -111,6 +112,10 @@ class FlashMessage
             $output .= '<script type="text/javascript">';
 
             foreach ($_SESSION['flash_notification'] as $flashMessage) {
+                if ($flashMessage['type'] == self::TYPE_DANGER) {
+                    $flashMessage['type'] = 'error';
+                }
+
                 $output .= 'toastr.'
                     . $flashMessage['type'] . '("'
                     . $flashMessage['message'] . '", "'

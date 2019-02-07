@@ -1,0 +1,76 @@
+{% extends "@admin/layout.html" %}
+
+{% block title %}New User{% endblock %}
+
+{% block breadcrumb %}
+
+<div class="page-breadcrumb">
+    <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+            <h4 class="page-title">New User</h4>
+            <div class="ml-auto text-right">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="/admin/user">Users</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">New Users</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <form class="form-horizontal" action="/admin/user/new" method="post">
+                <div class="card-body">
+                    <!-- <h4 class="card-title">Personal Info</h4> -->
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">First Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="first_name" value="{{ user.first_name }}" class="form-control" id="fname" placeholder="First Name Here">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Last Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="last_name" value="{{ user.last_name }}" class="form-control" id="lname" placeholder="Last Name Here">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="email1" class="col-sm-3 text-right control-label col-form-label">Email</label>
+                        <div class="col-sm-9">
+                            <input type="email" name="email" value="{{ user.email }}" class="form-control" id="email1" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Username</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="username" value="{{ user.username }}" class="form-control" id="cono1" placeholder="username">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Password</label>
+                        <div class="col-sm-9">
+                            <input type="password" name="password" class="form-control" id="password" placeholder="Password Here">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="border-top">
+                    <div class="card-body">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

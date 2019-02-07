@@ -9,13 +9,14 @@
         <meta name="author" content="">
         <!-- Favicon icon -->
         <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
+        <title>{% block title %}{% endblock %} Madeira Madeira Project</title>
         {{ assets({files: ['@admin/assets/styles.css']}) }}
         {{ assets({files: ['@js_lib/bootstrap/dist/css/bootstrap.min.css']}) }}
         {{ assets({files: ['@admin/assets/float-chart.css']}) }}
         {{ assets({files: ['@admin/assets/toastr.min.css']}) }}
         {{ assets({files: ['@admin/assets/custom.css']}) }}
         {% block head %}
-        <title>{% block title %}{% endblock %} Madeira Madeira Project</title>
+
         <!-- Custom CSS -->
         {% endblock %}
 
@@ -85,6 +86,7 @@
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
+            {% block breadcrumb %}
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
@@ -100,6 +102,7 @@
                     </div>
                 </div>
             </div>
+            {% endblock %}
             <!-- ============================================================== -->
             <!-- End Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
