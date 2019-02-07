@@ -85,7 +85,7 @@ abstract class ModelAbstract implements ModelInterface
         if (! is_null($data)) {
             $this->data[$dataOrKey] = $data;
         } else {
-            $this->data = $dataOrKey;
+            $this->data = array_merge($this->data, $dataOrKey);
         }
 
         return $this;

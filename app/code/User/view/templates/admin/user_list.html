@@ -51,7 +51,10 @@
                     <td>{{ user.last_name }}</td>
                     <td>{{ user.email }}</td>
                     <td>{{ user.username }}</td>
-                    <td><button type="button"  class="btn btn-danger btn-sm" data-target="#Modal2" onclick="window.userIdByDelete = {{ user.id }}" data-toggle="modal">Delete</button></td>
+                    <td>
+                        <button type="button"  class="btn btn-danger btn-sm" data-target="#Modal2" onclick="window.userIdByDelete = {{ user.id }}" data-toggle="modal">Delete</button>
+                        <button type="button"  class="btn btn-info btn-sm" onclick="window.location.href='/admin/user/edit/{{ user.id }}'">Edit</button>
+                    </td>
                 </tr>
                 {% endfor %}
                 </tbody>

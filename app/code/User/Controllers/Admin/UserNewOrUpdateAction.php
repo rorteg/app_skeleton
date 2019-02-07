@@ -17,7 +17,7 @@ use MadeiraMadeira\User\Helper\Validation;
  * Class UserNewAction
  * @package MadeiraMadeira\User\Controllers\Admin
  */
-class UserNewAction extends AdminActionAbstract
+class UserNewOrUpdateAction extends AdminActionAbstract
 {
     /**
      * @var UserInterface
@@ -59,13 +59,31 @@ class UserNewAction extends AdminActionAbstract
     public function __invoke() : ResponseInterface
     {
         $postParams = filter_input_array(INPUT_POST);
+        $id = null;
+        $userData = [];
+        $action = '/admin/user/new';
+
+        if (count(func_get_args())) {
+            $id = func_get_arg(0);
+            $userData = $this->user->load($id)->getData();
+            $action = '/admin/user/edit/' . $id;
+        }
 
         if (count($postParams)) {
-            $this->addNewUser($postParams);
+            if (is_null($id)) {
+                $this->addNewUser($postParams);
+            }
+            $this->updateUser($postParams, $id);
         }
 
         return new HtmlResponse(
-            $this->templateRenderer->render('@user/admin/user_form.html')
+            $this->templateRenderer->render(
+                '@user/admin/user_form.html',
+                [
+                    'user' => $userData,
+                    'action' => $action
+                ]
+            )
         );
     }
 
@@ -95,6 +113,54 @@ class UserNewAction extends AdminActionAbstract
         FlashMessage::addNotificationMessage(
             FlashMessage::TYPE_SUCCESS,
             'User added successfully!'
+        );
+
+        $this->redirect('/admin/user');
+    }
+
+    /**
+     * @param array $postParams
+     * @param string|int $id
+     */
+    private function updateUser($postParams, $id) : void
+    {
+        $validation = $this->validation;
+
+        if ($postParams['password'] == '') {
+            $validated = $validation->validate($postParams, false);
+            unset($postParams['password']);
+        } else {
+            $validated = $validation->validate($postParams);
+        }
+
+        if (! $validated) {
+            foreach ($validation->getMessages() as $message) {
+                FlashMessage::addNotificationMessage(
+                    FlashMessage::TYPE_DANGER,
+                    $message
+                );
+            }
+
+            $this->redirect('/admin/user/update');
+        }
+
+        $user = $this->user->load($id);
+
+        if (! $user->getId()) {
+            FlashMessage::addNotificationMessage(
+                FlashMessage::TYPE_DANGER,
+                'User does not exist.'
+            );
+
+            $this->redirect('/admin/user');
+        }
+
+        $user->setData($postParams);
+        $user->save();
+
+        FlashMessage::addNotificationMessage(
+            FlashMessage::TYPE_SUCCESS,
+            'User data updated successfully!'
         );
 
         $this->redirect('/admin/user');

@@ -33,9 +33,10 @@ class Validation
 
     /**
      * @param array $postParams
+     * @param bool $validatePasswordEmpty
      * @return bool
      */
-    public function validate($postParams) : bool
+    public function validate($postParams, $validatePasswordEmpty = true) : bool
     {
         $return = true;
 
@@ -47,11 +48,16 @@ class Validation
             || $postParams['username'] == ''
             || ! isset($postParams['email'])
             || $postParams['email'] == ''
-            || ! isset($postParams['password'])
-            || $postParams['password'] == ''
         ) {
             $return = false;
             $this->addMessage('Some required fields are empty.');
+        }
+
+        if ($validatePasswordEmpty) {
+            if (! isset($postParams['password']) || $postParams['password'] == '') {
+                $return = false;
+                $this->addMessage('Password is required!.');
+            }
         }
 
         if (! filter_var($postParams['email'], FILTER_VALIDATE_EMAIL)) {
