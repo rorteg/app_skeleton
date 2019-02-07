@@ -5,28 +5,11 @@ paths:
 environments:
     default_migration_table: phinxlog
     default_database: development
-    production:
-        adapter: mysql
-        host: localhost
-        name: madeiramadeira_prd
-        user: root
-        pass: 'magento'
-        port: 3306
-        charset: utf8
 
     development:
         adapter: mysql
         host: localhost
         name: madeiramadeira_dev
-        user: root
-        pass: 'magento'
-        port: 3306
-        charset: utf8
-
-    testing:
-        adapter: mysql
-        host: localhost
-        name: madeiramadeira_test
         user: root
         pass: 'magento'
         port: 3306

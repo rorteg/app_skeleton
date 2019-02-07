@@ -60,8 +60,7 @@ final class ConnectionTest extends TestCase
             'email' => self::EMAIL_TEST,
             'password' => '123455',
             'first_name' => 'Rafael',
-            'last_name' => 'Ortega Bueno',
-            'created' => date('Y-m-d H:i:s')
+            'last_name' => 'Ortega Bueno'
         ]);
 
         $this->assertIsInt($userId);

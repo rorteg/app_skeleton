@@ -37,8 +37,6 @@ class User extends AbstractMigration
         $table->addColumn('password', 'string', ['limit' => 100]);
         $table->addColumn('first_name', 'string', ['limit' => 100]);
         $table->addColumn('last_name', 'string', ['limit' => 100]);
-        $table->addColumn('created', 'datetime');
-        $table->addColumn('updated', 'datetime', ['null' => true]);
         $table->addIndex(['username', 'email'], ['unique' => true]);
         $table->save();
     }
