@@ -38,7 +38,7 @@ vendor/bin/phinx migrate
 vendor/bin/phinx seed:run
 ```
 
-### 4 NPM
+### 4 - NPM
 
 ```
 npm install
