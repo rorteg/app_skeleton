@@ -44,7 +44,7 @@ class IndexAction extends AdminActionAbstract
             FlashMessage::TYPE_INFO,
             'Wellcome!',
             '',
-            'Madeira Madeira Project'
+            'Project Example'
         );
         $html = $this->templateRenderer->render('@admin/index.html');
         return new HtmlResponse($html);
