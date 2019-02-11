@@ -33,7 +33,6 @@ class Session
             // session started more than 30 minutes ago
             session_unset();
             session_destroy();
-            session_regenerate_id(true);    // change session ID for the current session and invalidate old session ID
             $_SESSION['CREATED'] = time();  // update creation time
         }
 
