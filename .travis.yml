@@ -27,8 +27,3 @@ script:
 
 after_script:
   - composer upload-coverage
-
-cache:
-  directories:
-    - $HOME/.composer/cache
-    - vendor
