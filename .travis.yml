@@ -16,10 +16,19 @@ before_script:
   - vendor/bin/phinx seed:run
 
 install:
-  - composer install
+  - composer install --ignore-platform-reqs --no-interaction
+  - composer require --dev satooshi/php-coveralls --ignore-platform-reqs --no-interaction
 
 # omitting "script:" will default to phpunit
 # use the $DB env variable to determine the phpunit.xml to use
 script:
   - composer code:cf
   - composer test:all
+
+after_script:
+  - composer upload-coverage
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+    - vendor

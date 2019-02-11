@@ -60,6 +60,12 @@
         ],
         "code:fix": [
             "./vendor/bin/phpcbf --standard=PSR2 --ignore=app/*/migrations,app/*/seeds,app/bootstrap.php,app/*/*/view app/"
+        ],
+        "test:coverage": [
+            "./vendor/bin/phpunit --coverage-clover clover.xml"
+        ],
+        "upload-coverage": [
+            "coveralls -v"
         ]
     }
 }

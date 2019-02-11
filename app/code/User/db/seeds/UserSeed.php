@@ -3,7 +3,7 @@
 
 use Phinx\Seed\AbstractSeed;
 
-class User extends AbstractSeed
+class UserSeed extends AbstractSeed
 {
     /**
      * Run Method.
