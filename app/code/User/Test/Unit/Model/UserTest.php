@@ -34,4 +34,13 @@ final class UserTest extends TestCase
 
         $this->assertEquals($username, $user->getUsername());
     }
+
+    public function testPassword()
+    {
+        $user = $this->userModel;
+        $user->setPassword('test123');
+        $passwordInfo = password_get_info($user->getPassword());
+
+        $this->assertEquals(1, $passwordInfo['algo']);
+    }
 }
