@@ -23,7 +23,8 @@
         <ini name="date.timezone" value="America/Sao_Paulo"/>
         <ini name="xdebug.max_nesting_level" value="200"/>
     </php>
-    <!-- <logging>
-        <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>
-    </logging> -->
+    <logging>
+        <log type="coverage-clover" target="build/logs/clover.xml"/>
+        <!-- <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/> -->
+    </logging>
 </phpunit>
