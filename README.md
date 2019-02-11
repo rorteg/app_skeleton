@@ -1,5 +1,6 @@
 # Skeleton Project
 [![Build Status](https://travis-ci.org/rorteg/app_skeleton.svg?branch=master)](https://travis-ci.org/rorteg/app_skeleton)
+[![Coverage Status](https://coveralls.io/repos/github/rorteg/app_skeleton/badge.svg?branch=master)](https://coveralls.io/github/rorteg/app_skeleton?branch=master)
 
 ## Requirements
 * PHP ^7.1
