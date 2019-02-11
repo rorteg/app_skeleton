@@ -16,6 +16,9 @@
             <directory suffix=".php">app/code/*/</directory>
             <exclude>
                 <directory suffix=".php">app/code/*/Test</directory>
+                <directory suffix=".php">app/code/*/config</directory>
+                <directory suffix=".php">app/code/*/db/migrations</directory>
+                <directory suffix=".php">app/code/*/db/seeds</directory>
             </exclude>
         </whitelist>
     </filter>
