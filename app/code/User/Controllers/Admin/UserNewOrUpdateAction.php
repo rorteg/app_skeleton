@@ -116,7 +116,6 @@ class UserNewOrUpdateAction extends AdminActionAbstract
                 FlashMessage::TYPE_SUCCESS,
                 'User added successfully!'
             );
-
         } catch (\Exception $e) {
             FlashMessage::addNotificationMessage(
                 FlashMessage::TYPE_DANGER,
