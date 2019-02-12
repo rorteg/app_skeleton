@@ -108,12 +108,21 @@ class UserNewOrUpdateAction extends AdminActionAbstract
 
         $user = $this->user;
         $user->setData($postParams);
-        $user->save();
 
-        FlashMessage::addNotificationMessage(
-            FlashMessage::TYPE_SUCCESS,
-            'User added successfully!'
-        );
+        try {
+            $user->save();
+
+            FlashMessage::addNotificationMessage(
+                FlashMessage::TYPE_SUCCESS,
+                'User added successfully!'
+            );
+
+        } catch (\Exception $e) {
+            FlashMessage::addNotificationMessage(
+                FlashMessage::TYPE_DANGER,
+                'There was a problem trying to save the user.'
+            );
+        }
 
         $this->redirect('/admin/user');
     }

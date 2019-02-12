@@ -44,7 +44,7 @@ abstract class ModelAbstract implements ModelInterface
      * @param null|string $column
      * @return $this
      */
-    public function load($idOrColumnValue, $column = null) : ModelInterface
+    public function load($idOrColumnValue, $column = null): ModelInterface
     {
         if (is_null($column)) {
             $column = 'id';
@@ -64,7 +64,7 @@ abstract class ModelAbstract implements ModelInterface
 
             $this->setData($result);
 
-            if (! isset($this->data['id'])) {
+            if (!isset($this->data['id'])) {
                 $this->data = [];
             }
         } catch (\Exception $e) {
@@ -80,11 +80,16 @@ abstract class ModelAbstract implements ModelInterface
      * @param array $data
      * @return $this
      */
-    public function setData($dataOrKey, $data = null) : ModelInterface
+    public function setData($dataOrKey, $data = null): ModelInterface
     {
-        if (! is_null($data)) {
+        if (!is_null($data)) {
             $this->data[$dataOrKey] = $data;
         } else {
+            if (!is_array($dataOrKey)) {
+                throw new \InvalidArgumentException(
+                    'If you do not pass a key to the method, you must pass an array.'
+                );
+            }
             $this->data = array_merge($this->data, $dataOrKey);
         }
 
@@ -107,41 +112,38 @@ abstract class ModelAbstract implements ModelInterface
     /**
      * @return $this
      */
-    public function save() : ModelInterface
+    public function save(): ModelInterface
     {
-        try {
-            if (isset($this->data['id'])) {
-                // Update
 
-                if (count($this->getData())) {
-                    $id = $this->connection->update(
-                        $this->getTableName(),
-                        $this->getData()
-                    );
+        if (isset($this->data['id'])) {
+            // Update
 
-                    $this->setData('id', $id);
-                }
-            } else {
-                // New Records
-                $id = $this->connection->insert(
+            if (count($this->getData())) {
+                $id = $this->connection->update(
                     $this->getTableName(),
                     $this->getData()
                 );
 
                 $this->setData('id', $id);
             }
+        } else {
+            // New Records
+            $id = $this->connection->insert(
+                $this->getTableName(),
+                $this->getData()
+            );
 
-            return $this;
-        } catch (\Exception $e) {
-            echo $e->getMessage();
+            $this->setData('id', $id);
         }
+
+        return $this;
     }
 
     /**
      * Delete entity
      * @return bool
      */
-    public function delete() : bool
+    public function delete(): bool
     {
         try {
             $this->connection->delete(
