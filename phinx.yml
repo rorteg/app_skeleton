@@ -1,6 +1,6 @@
 paths:
-    migrations: '%%PHINX_CONFIG_DIR%%/app/code/*/db/migrations'
-    seeds: '%%PHINX_CONFIG_DIR%%/app/code/*/db/seeds'
+    migrations: '%%PHINX_CONFIG_DIR%%/app/code/*/*/db/migrations'
+    seeds: '%%PHINX_CONFIG_DIR%%/app/code/*/*/db/seeds'
 
 environments:
     default_migration_table: phinxlog
@@ -9,7 +9,7 @@ environments:
     development:
         adapter: mysql
         host: localhost
-        name: madeiramadeira_dev
+        name: shelf_dev
         user: root
         pass: ''
         port: 3306

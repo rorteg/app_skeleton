@@ -3,7 +3,7 @@
 $host = 'localhost';
 $username = 'root';
 $password = '';
-$database = 'madeiramadeira_dev';
+$database = 'shelf_dev';
 
 return [
     'db' => [

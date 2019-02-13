@@ -28,8 +28,8 @@
     },
     "autoload": {
         "psr-4": {
-            "MadeiraMadeira\\" : "app/code",
-            "MadeiraMadeira\\Dev\\" : "dev"
+            "Shelf\\" : "app/code/Shelf",
+            "Shelf\\Dev\\" : "dev"
         }
     },
     "minimum-stability": "dev",
@@ -37,7 +37,7 @@
     "extra": {
         "merge-plugin": {
             "include": [
-                "app/code/*/composer.json"
+                "app/code/*/*/composer.json"
             ]
         }
     },
@@ -57,10 +57,10 @@
             "./vendor/bin/phpunit --testsuite='Integration' --colors=always"
         ],
         "code:check": [
-            "./vendor/bin/phpcs --standard=PSR2 --ignore=app/*/migrations,app/*/seeds,app/bootstrap.php,app/*/*/view app/"
+            "./vendor/bin/phpcs --standard=PSR2 --ignore=app/*/*/migrations,app/*/*/seeds,app/bootstrap.php,app/*/*/view app/"
         ],
         "code:fix": [
-            "./vendor/bin/phpcbf --standard=PSR2 --ignore=app/*/migrations,app/*/seeds,app/bootstrap.php,app/*/*/view app/"
+            "./vendor/bin/phpcbf --standard=PSR2 --ignore=app/*/*/migrations,app/*/*/seeds,app/bootstrap.php,app/*/*/view app/"
         ],
         "test:coverage": [
             "./vendor/bin/phpunit --coverage-clover clover.xml"
