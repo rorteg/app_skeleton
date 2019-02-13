@@ -1,9 +1,9 @@
-{% extends "@admin/layout.html" %}
+{% extends "@shelf_admin/layout.html" %}
 {% block title %} User List {% endblock %}
 {% block head %}
 
-{{ assets({files: ['@admin/assets/multicheck.css']}) }}
-{{ assets({files: ['@admin/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css']}) }}
+{{ assets({files: ['@shelf_admin/assets/multicheck.css']}) }}
+{{ assets({files: ['@shelf_admin/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css']}) }}
 {% endblock %}
 
 {% block breadcrumb %}
@@ -95,9 +95,9 @@
 {% endblock %}
 
 {% block js_footer %}
-    {{ assets({files: ['@admin/js/extra-libs/multicheck/datatable-checkbox-init.js']}) }}
-    {{ assets({files: ['@admin/js/extra-libs/multicheck/jquery.multicheck.js']}) }}
-    {{ assets({files: ['@admin/js/extra-libs/DataTables/datatables.min.js']}) }}
+    {{ assets({files: ['@shelf_admin/js/extra-libs/multicheck/datatable-checkbox-init.js']}) }}
+    {{ assets({files: ['@shelf_admin/js/extra-libs/multicheck/jquery.multicheck.js']}) }}
+    {{ assets({files: ['@shelf_admin/js/extra-libs/DataTables/datatables.min.js']}) }}
     <script type="text/javascript">
         window.userIdByDelete = false;
 

@@ -13,8 +13,8 @@
     {% block head %}
     <title>{% block title %}{% endblock %} Madeira Madeira Project</title>
     <!-- Custom CSS -->
-    {{ assets({files: ['@admin/assets/styles.css']}) }}
-    {{ assets({files: ['@admin/assets/custom.css']}) }}
+    {{ assets({files: ['@shelf_admin/assets/styles.css']}) }}
+    {{ assets({files: ['@shelf_admin/assets/custom.css']}) }}
     {% endblock %}
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -102,7 +102,7 @@
 			c-1.9,0.1-3.7-0.4-5.2-1.5c-1.3-1.1-2-2.7-1.9-4.4c-0.1-1.6,0.5-3.1,1.6-4.3c1.5-1.1,3.2-1.9,5.2-2.1c0.8-0.1,1.9-0.3,3.4-0.5
 			c4.2-0.5,7.2-1.2,9-2.2L333.8,49.5z"></path></g></svg></span>
                 </div>
-                {% embed "@app/layout/flash.html" %}{% endembed %}
+                {% embed "@shelf_app/layout/flash.html" %}{% endembed %}
                 <!-- Form -->
                 <form class="form-horizontal m-t-20" id="loginform" action="/loginPost" method="post">
                     <div class="row p-b-30">

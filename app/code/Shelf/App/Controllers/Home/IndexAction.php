@@ -34,7 +34,7 @@ class IndexAction extends ActionAbstract
      */
     public function __invoke(): ResponseInterface
     {
-        $html = $this->templateRenderer->render('@app/home/index.html', [
+        $html = $this->templateRenderer->render('@shelf_app/home/index.html', [
             'name' => 'Rafael Ortega Bueno'
         ]);
         return new HtmlResponse($html);

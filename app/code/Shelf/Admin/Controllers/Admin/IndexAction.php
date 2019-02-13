@@ -46,7 +46,7 @@ class IndexAction extends AdminActionAbstract
             '',
             'Project Example'
         );
-        $html = $this->templateRenderer->render('@admin/index.html');
+        $html = $this->templateRenderer->render('@shelf_admin/index.html');
         return new HtmlResponse($html);
     }
 }
