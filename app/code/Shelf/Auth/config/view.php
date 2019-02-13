@@ -3,8 +3,8 @@
 return [
     'view' => [
         'paths' => [
-            'auth' => [
-                BP . '/app/code/Auth/view/templates'
+            'shelf_auth' => [
+                BP . '/app/code/Shelf/Auth/view/templates'
             ]
         ]
     ]

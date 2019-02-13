@@ -3,8 +3,8 @@
 return [
     'view' => [
         'paths' => [
-            'app' => [
-                BP . '/app/code/App/view/templates'
+            'shelf_app' => [
+                BP . '/app/code/Shelf/App/view/templates'
             ],
             'js_lib' => [
                 BP . '/node_modules'

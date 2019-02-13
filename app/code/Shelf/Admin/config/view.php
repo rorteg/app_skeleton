@@ -3,8 +3,8 @@
 return [
     'view' => [
         'paths' => [
-            'admin' => [
-                BP . '/app/code/Admin/view/templates'
+            'shelf_admin' => [
+                BP . '/app/code/Shelf/Admin/view/templates'
             ]
         ],
         'twig_functions' => [

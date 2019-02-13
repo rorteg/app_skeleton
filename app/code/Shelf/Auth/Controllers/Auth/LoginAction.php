@@ -34,7 +34,7 @@ class LoginAction extends ActionAbstract
      */
     public function __invoke() : ResponseInterface
     {
-        $html = $this->templateRenderer->render('@auth/login.html');
+        $html = $this->templateRenderer->render('@shelf_auth/login.html');
         return new HtmlResponse($html);
     }
 }

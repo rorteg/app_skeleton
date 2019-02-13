@@ -10,11 +10,11 @@
         <!-- Favicon icon -->
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
         <title>{% block title %}{% endblock %} Madeira Madeira Project</title>
-        {{ assets({files: ['@admin/assets/styles.css']}) }}
+        {{ assets({files: ['@shelf_admin/assets/styles.css']}) }}
         {{ assets({files: ['@js_lib/bootstrap/dist/css/bootstrap.min.css']}) }}
-        {{ assets({files: ['@admin/assets/float-chart.css']}) }}
-        {{ assets({files: ['@admin/assets/toastr.min.css']}) }}
-        {{ assets({files: ['@admin/assets/custom.css']}) }}
+        {{ assets({files: ['@shelf_admin/assets/float-chart.css']}) }}
+        {{ assets({files: ['@shelf_admin/assets/toastr.min.css']}) }}
+        {{ assets({files: ['@shelf_admin/assets/custom.css']}) }}
         {% block head %}
 
         <!-- Custom CSS -->
@@ -47,7 +47,7 @@
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
         <header class="topbar" data-navbarbg="skin5">
-            {% embed "@admin/layout/header.html" %}{% endembed %}
+            {% embed "@shelf_admin/layout/header.html" %}{% endembed %}
         </header>
         <!-- ============================================================== -->
         <!-- End Topbar header -->
@@ -129,26 +129,26 @@
     {{ assets({files: ['@js_lib/perfect-scrollbar/dist/js/perfect-scrollbar.jquery.js']}) }}
     {{ assets({files: ['@js_lib/jquery-sparkline/jquery.sparkline.min.js']}) }}
     <!--Wave Effects -->
-    {{ assets({files: ['@admin/js/dist/waves.js']}) }}
+    {{ assets({files: ['@shelf_admin/js/dist/waves.js']}) }}
     <!--Menu sidebar -->
-    {{ assets({files: ['@admin/js/dist/sidebar.js']}) }}
+    {{ assets({files: ['@shelf_admin/js/dist/sidebar.js']}) }}
     <!--Custom JavaScript -->
-    {{ assets({files: ['@admin/js/dist/custom.min.js']}) }}
+    {{ assets({files: ['@shelf_admin/js/dist/custom.min.js']}) }}
     <!--This page JavaScript -->
     <!-- <script src="../../dist/js/pages/dashboards/dashboard1.js"></script> -->
     <!-- Charts js Files -->
-    {{ assets({files: ['@admin/js/dist/excanvas.js']}) }}
-    {{ assets({files: ['@admin/js/dist/jquery.flot.js']}) }}
-    {{ assets({files: ['@admin/js/dist/jquery.flot.pie.js']}) }}
-    {{ assets({files: ['@admin/js/dist/jquery.flot.time.js']}) }}
-    {{ assets({files: ['@admin/js/dist/jquery.flot.stack.js']}) }}
-    {{ assets({files: ['@admin/js/dist/jquery.flot.crosshair.js']}) }}
-    {{ assets({files: ['@admin/js/dist/jquery.flot.tooltip.min.js']}) }}
-    {{ assets({files: ['@admin/js/dist/chart-page-init.js']}) }}
-    {{ assets({files: ['@admin/js/dist/toastr.min.js']}) }}
+    {{ assets({files: ['@shelf_admin/js/dist/excanvas.js']}) }}
+    {{ assets({files: ['@shelf_admin/js/dist/jquery.flot.js']}) }}
+    {{ assets({files: ['@shelf_admin/js/dist/jquery.flot.pie.js']}) }}
+    {{ assets({files: ['@shelf_admin/js/dist/jquery.flot.time.js']}) }}
+    {{ assets({files: ['@shelf_admin/js/dist/jquery.flot.stack.js']}) }}
+    {{ assets({files: ['@shelf_admin/js/dist/jquery.flot.crosshair.js']}) }}
+    {{ assets({files: ['@shelf_admin/js/dist/jquery.flot.tooltip.min.js']}) }}
+    {{ assets({files: ['@shelf_admin/js/dist/chart-page-init.js']}) }}
+    {{ assets({files: ['@shelf_admin/js/dist/toastr.min.js']}) }}
     {% block js_footer %}
     {% endblock %}
 
-    {% embed "@admin/layout/notification.html" %}{% endembed %}
+    {% embed "@shelf_admin/layout/notification.html" %}{% endembed %}
     </body>
 </html>

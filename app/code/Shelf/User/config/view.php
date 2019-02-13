@@ -4,7 +4,7 @@ return [
     'view' => [
         'paths' => [
             'user' => [
-                BP . '/app/code/User/view/templates'
+                BP . '/app/code/Shelf/User/view/templates'
             ]
         ]
     ]
