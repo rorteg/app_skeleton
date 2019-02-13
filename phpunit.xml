@@ -5,20 +5,20 @@
 >
     <testsuites>
         <testsuite name="Unit">
-            <directory suffix="Test.php">app/code/*/Test/Unit</directory>
+            <directory suffix="Test.php">app/code/*/*/Test/Unit</directory>
         </testsuite>
         <testsuite name="Integration">
-            <directory suffix="Test.php">app/code/*/Test/Integration</directory>
+            <directory suffix="Test.php">app/code/*/*/Test/Integration</directory>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">app/code/*/</directory>
+            <directory suffix=".php">app/code/*/*/</directory>
             <exclude>
-                <directory suffix=".php">app/code/*/Test</directory>
-                <directory suffix=".php">app/code/*/config</directory>
-                <directory suffix=".php">app/code/*/db/migrations</directory>
-                <directory suffix=".php">app/code/*/db/seeds</directory>
+                <directory suffix=".php">app/code/*/*/Test</directory>
+                <directory suffix=".php">app/code/*/*/config</directory>
+                <directory suffix=".php">app/code/*/*/db/migrations</directory>
+                <directory suffix=".php">app/code/*/*/db/seeds</directory>
             </exclude>
         </whitelist>
     </filter>
