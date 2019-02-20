@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Shelf\Auth\Controllers\Auth;
 
-use Shelf\Framework\Api\Http\ResponseInterface;
-use Shelf\Framework\App\Http\HtmlResponse;
-use Shelf\Framework\Controller\ActionAbstract;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Zend\Diactoros\Response\HtmlResponse;
 use Shelf\Framework\View\Api\TemplateRendererInterface;
 
 /**
  * Class LoginAction
  * @package Shelf\Auth\Controllers\Auth
  */
-class LoginAction extends ActionAbstract
+class LoginAction
 {
     /**
      * @var TemplateRendererInterface
@@ -30,9 +30,10 @@ class LoginAction extends ActionAbstract
     }
 
     /**
+     * @param ServerRequestInterface $request
      * @return ResponseInterface
      */
-    public function __invoke() : ResponseInterface
+    public function __invoke(ServerRequestInterface $request) : ResponseInterface
     {
         $html = $this->templateRenderer->render('@shelf_auth/login.html');
         return new HtmlResponse($html);

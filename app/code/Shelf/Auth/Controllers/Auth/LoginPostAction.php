@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace Shelf\Auth\Controllers\Auth;
 
 use Shelf\Auth\Api\AuthenticateInterface;
-use Shelf\Framework\Api\Http\ResponseInterface;
-use Shelf\Framework\Controller\ActionAbstract;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use Shelf\Framework\Session\FlashMessage;
+use Zend\Diactoros\Response\RedirectResponse;
 
-class LoginPostAction extends ActionAbstract
+class LoginPostAction
 {
     /**
      * @var AuthenticateInterface
@@ -27,14 +28,16 @@ class LoginPostAction extends ActionAbstract
     }
 
     /**
+     * @param ServerRequestInterface $request
      * @return ResponseInterface
      */
-    public function __invoke(): ResponseInterface
+    public function __invoke(ServerRequestInterface $request) : ResponseInterface
     {
-        $postParams = filter_input_array(INPUT_POST);
+        $postParams = $request->getParsedBody();
+
 
         if (! isset($postParams['username']) || ! isset($postParams['password'])) {
-            $this->redirect('/');
+            return new RedirectResponse('/');
         }
 
         $auth = $this->authenticate;
@@ -46,9 +49,9 @@ class LoginPostAction extends ActionAbstract
 
         if (! $user) {
             FlashMessage::addMessage(FlashMessage::TYPE_DANGER, 'Login ou Senha inválidos.');
-            $this->redirect('/login');
+            return new RedirectResponse('/login');
         }
 
-        $this->redirect('/admin');
+        return new RedirectResponse('/admin');
     }
 }

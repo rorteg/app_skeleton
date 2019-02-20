@@ -4,17 +4,18 @@ declare(strict_types=1);
 
 namespace Shelf\User\Controllers\Admin;
 
-use Shelf\Admin\Controllers\AdminActionAbstract;
-use Shelf\Auth\Api\AuthenticateInterface;
-use Shelf\Framework\Api\Http\ResponseInterface;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Zend\Diactoros\Response\HtmlResponse;
 use Shelf\Framework\Session\FlashMessage;
 use Shelf\User\Api\Data\UserInterface;
+use Zend\Diactoros\Response\RedirectResponse;
 
 /**
  * Class UserDeleteAction
  * @package Shelf\User\Controllers\Admin
  */
-class UserDeleteAction extends AdminActionAbstract
+class UserDeleteAction
 {
     /**
      * @var UserInterface
@@ -24,24 +25,23 @@ class UserDeleteAction extends AdminActionAbstract
     /**
      * UserDeleteAction constructor.
      * @param UserInterface $user
-     * @param AuthenticateInterface $authenticate
      */
     public function __construct(
-        UserInterface $user,
-        AuthenticateInterface $authenticate
+        UserInterface $user
     ) {
-        parent::__construct($authenticate);
         $this->user = $user;
     }
 
     /**
+     * @param ServerRequestInterface $request
+     * @param array $args
      * @return ResponseInterface
      */
-    public function __invoke() : ResponseInterface
+    public function __invoke(ServerRequestInterface $request, array $args) : ResponseInterface
     {
-        $id = func_get_arg(0);
+        $id = $args['id'];
         if ($id == '') {
-            $this->redirect('/');
+            return new RedirectResponse('/');
         }
 
         $user = $this->user->load($id);
@@ -64,6 +64,6 @@ class UserDeleteAction extends AdminActionAbstract
             }
         }
 
-        $this->redirect('/admin/user');
+        return new RedirectResponse('/admin/user');
     }
 }

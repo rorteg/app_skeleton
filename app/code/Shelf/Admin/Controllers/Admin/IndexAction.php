@@ -4,18 +4,17 @@ declare(strict_types=1);
 
 namespace Shelf\Admin\Controllers\Admin;
 
-use Shelf\Admin\Controllers\AdminActionAbstract;
-use Shelf\Auth\Api\AuthenticateInterface;
-use Shelf\Framework\Api\Http\ResponseInterface;
-use Shelf\Framework\App\Http\HtmlResponse;
 use Shelf\Framework\Session\FlashMessage;
 use Shelf\Framework\View\Api\TemplateRendererInterface;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Zend\Diactoros\Response\HtmlResponse;
 
 /**
  * Class IndexAction
  * @package Shelf\Admin\Controllers
  */
-class IndexAction extends AdminActionAbstract
+class IndexAction
 {
     /**
      * @var TemplateRendererInterface
@@ -24,21 +23,19 @@ class IndexAction extends AdminActionAbstract
 
     /**
      * IndexAction constructor.
-     * @param AuthenticateInterface $authenticate
      * @param TemplateRendererInterface $templateRenderer
      */
     public function __construct(
-        AuthenticateInterface $authenticate,
         TemplateRendererInterface $templateRenderer
     ) {
-        parent::__construct($authenticate);
         $this->templateRenderer = $templateRenderer;
     }
 
     /**
+     * @param ServerRequestInterface $request
      * @return ResponseInterface
      */
-    public function __invoke(): ResponseInterface
+    public function __invoke(ServerRequestInterface $request) : ResponseInterface
     {
         FlashMessage::addNotificationMessage(
             FlashMessage::TYPE_INFO,
