@@ -2,6 +2,12 @@
 
 return [
     'routes' => [
-        ['GET', '/admin', \Shelf\Admin\Controllers\Admin\IndexAction::class]
+        'groups' => [
+            'admin' => [
+                'routes' => [
+                    ['GET', '/', \Shelf\Admin\Controllers\Admin\IndexAction::class]
+                ]
+            ]
+        ]
     ]
 ];

@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace Shelf\User\Controllers\Admin;
 
-use Shelf\Admin\Controllers\AdminActionAbstract;
-use Shelf\Auth\Api\AuthenticateInterface;
-use Shelf\Framework\Api\Http\ResponseInterface;
-use Shelf\Framework\App\Http\HtmlResponse;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Zend\Diactoros\Response\HtmlResponse;
 use Shelf\Framework\Session\FlashMessage;
 use Shelf\Framework\View\Api\TemplateRendererInterface;
 use Shelf\User\Api\Data\UserInterface;
 use Shelf\User\Helper\Validation;
+use Zend\Diactoros\Response\RedirectResponse;
 
 /**
  * Class UserNewAction
  * @package Shelf\User\Controllers\Admin
  */
-class UserNewOrUpdateAction extends AdminActionAbstract
+class UserNewOrUpdateAction
 {
     /**
      * @var UserInterface
@@ -44,27 +44,27 @@ class UserNewOrUpdateAction extends AdminActionAbstract
     public function __construct(
         UserInterface $user,
         TemplateRendererInterface $templateRenderer,
-        Validation $validation,
-        AuthenticateInterface $authenticate
+        Validation $validation
     ) {
-        parent::__construct($authenticate);
         $this->user = $user;
         $this->templateRenderer = $templateRenderer;
         $this->validation = $validation;
     }
 
     /**
+     * @param ServerRequestInterface $request
+     * @param array $args
      * @return ResponseInterface
      */
-    public function __invoke() : ResponseInterface
+    public function __invoke(ServerRequestInterface $request, array $args = []) : ResponseInterface
     {
-        $postParams = filter_input_array(INPUT_POST);
+        $postParams = $request->getParsedBody();
         $id = null;
         $userData = [];
         $action = '/admin/user/new';
 
-        if (count(func_get_args())) {
-            $id = func_get_arg(0);
+        if (count($args) && isset($args['id'])) {
+            $id = $args['id'];
             $userData = $this->user->load($id)->getData();
             $action = '/admin/user/edit/' . $id;
         }
@@ -89,9 +89,9 @@ class UserNewOrUpdateAction extends AdminActionAbstract
 
     /**
      * @param array $postParams
-     * @return void
+     * @return RedirectResponse
      */
-    private function addNewUser($postParams) : void
+    private function addNewUser($postParams) : RedirectResponse
     {
         $validation = $this->validation;
 
@@ -103,7 +103,7 @@ class UserNewOrUpdateAction extends AdminActionAbstract
                 );
             }
 
-            $this->redirect('/admin/user/new');
+            return new RedirectResponse('/admin/user/new');
         }
 
         $user = $this->user;
@@ -123,14 +123,15 @@ class UserNewOrUpdateAction extends AdminActionAbstract
             );
         }
 
-        $this->redirect('/admin/user');
+        return new RedirectResponse('/admin/user');
     }
 
     /**
      * @param array $postParams
      * @param string|int $id
+     * @return RedirectResponse
      */
-    private function updateUser($postParams, $id) : void
+    private function updateUser($postParams, $id) : RedirectResponse
     {
         $validation = $this->validation;
 
@@ -149,7 +150,7 @@ class UserNewOrUpdateAction extends AdminActionAbstract
                 );
             }
 
-            $this->redirect('/admin/user/update');
+            return new RedirectResponse('/admin/user/update');
         }
 
         $user = $this->user->load($id);
@@ -160,7 +161,7 @@ class UserNewOrUpdateAction extends AdminActionAbstract
                 'User does not exist.'
             );
 
-            $this->redirect('/admin/user');
+            return new RedirectResponse('/admin/user');
         }
 
         $user->setData($postParams);
@@ -171,6 +172,6 @@ class UserNewOrUpdateAction extends AdminActionAbstract
             'User data updated successfully!'
         );
 
-        $this->redirect('/admin/user');
+        return new RedirectResponse('/admin/user');
     }
 }
