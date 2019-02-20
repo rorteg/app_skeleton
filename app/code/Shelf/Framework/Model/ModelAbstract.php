@@ -86,9 +86,7 @@ abstract class ModelAbstract implements ModelInterface
             $this->data[$dataOrKey] = $data;
         } else {
             if (!is_array($dataOrKey)) {
-                throw new \InvalidArgumentException(
-                    'If you do not pass a key to the method, you must pass an array.'
-                );
+                $dataOrKey = [];
             }
             $this->data = array_merge($this->data, $dataOrKey);
         }
