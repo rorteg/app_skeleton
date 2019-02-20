@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace Shelf\Framework\App;
 
+use League\Route\RouteGroup;
+use League\Route\Router;
+use League\Route\Strategy\ApplicationStrategy;
 use Shelf\Framework\Api\AppInterface;
-use Shelf\Framework\Controller\Api\ActionInterface;
-use Shelf\Framework\Api\Http\ResponseInterface;
+use Zend\Diactoros\ServerRequestFactory;
+use Zend\HttpHandlerRunner\Emitter\SapiEmitter;
 use Zend\ServiceManager\ServiceManager;
 
 /**
@@ -26,56 +29,84 @@ class Http implements AppInterface
     private $serviceManager;
 
     /**
+     * @var Router
+     */
+    private $router;
+
+    /**
      * Http constructor.
      * @param $routeConfig
      * @param ServiceManager $serviceManager
      */
-    public function __construct($routeConfig, ServiceManager $serviceManager)
-    {
+    public function __construct(
+        $routeConfig,
+        ServiceManager $serviceManager
+    ) {
         $this->routeConfig = $routeConfig;
         $this->serviceManager = $serviceManager;
+
+        /** @var ApplicationStrategy $strategy */
+        $strategy = (new ApplicationStrategy)->setContainer($serviceManager);
+        $this->router = (new Router)->setStrategy($strategy);
     }
 
     /**
      * Launch application
      * @return void
-     * @throws \Exception
      */
     public function launch()
     {
-        $router = new \AltoRouter();
+        $request = ServerRequestFactory::fromGlobals(
+            $_SERVER,
+            $_GET,
+            $_POST,
+            $_COOKIE,
+            $_FILES
+        );
 
-        $router->addRoutes($this->routeConfig);
+        // Add Routes Groups
+        if (isset($this->routeConfig['groups'])) {
+            foreach ($this->routeConfig['groups'] as $key => $routes) {
+                $group = $this->router->group($key, function (RouteGroup $routeGroup) use ($routes) {
+                    $this->addRoutesFromArray($routes['routes'], $routeGroup);
+                });
 
-        // match current request url
-        $match = $router->match();
+                if (isset($routes['middlewares'])) {
+                    foreach ($routes['middlewares'] as $middleware) {
+                        if ($this->serviceManager->has($middleware)) {
+                            $middleware = $this->serviceManager->get($middleware);
+                        } else {
+                            $middleware = new $middleware;
+                        }
 
-        if ($this->serviceManager->has($match['target'])) {
-            $match['target'] = $this->serviceManager->get($match['target']);
+                        $group->middleware($middleware);
+                    }
+                }
+            }
+
+            unset($this->routeConfig['groups']);
         }
 
-        // call closure or throw 404 status
-        if ($match && is_callable($match['target'])) {
-            if (! ($match['target'] instanceof ActionInterface)) {
-                throw new \Exception(
-                    'The HTTP app expects Actions to implement ActionInterface.'
-                );
-            }
+        // Add single routes
+        $this->addRoutesFromArray($this->routeConfig);
 
-            $response = call_user_func_array($match['target'], $match['params']);
+        $response = $this->router->dispatch($request);
 
-            if (! ($response instanceof ResponseInterface)) {
-                throw new \Exception(
-                    'The HTTP app expects the controllers to return an instance that implements the interface: 
-                    ResponseInterface'
-                );
-            }
+        (new SapiEmitter())->emit($response);
+    }
 
-            echo $response->sendResponse();
-            exit(1);
-        } else {
-            // no route was matched
-            header($_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
+    /**
+     * @param array $routesArray
+     * @param null $router
+     */
+    private function addRoutesFromArray(array $routesArray, $router = null) : void
+    {
+        if (is_null($router)) {
+            $router = $this->router;
+        }
+
+        foreach ($routesArray as $route) {
+            $router->map($route[0], $route[1], $route[2]);
         }
     }
 }
