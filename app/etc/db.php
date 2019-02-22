@@ -2,7 +2,7 @@
 
 $host = 'localhost';
 $username = 'root';
-$password = 'magento';
+$password = '';
 $database = 'shelf_dev';
 
 return [
