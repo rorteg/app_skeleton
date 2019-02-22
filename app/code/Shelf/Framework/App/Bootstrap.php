@@ -53,7 +53,7 @@ class Bootstrap
     public function createApplication($type, $arguments = [])
     {
         try {
-            $application = new $type($arguments, $this->serviceManager);
+            $application = new $type($this->serviceManager, $arguments);
             if (!($application instanceof AppInterface)) {
                 throw new \InvalidArgumentException("The provided class doesn't implement AppInterface: {$type}");
             }
