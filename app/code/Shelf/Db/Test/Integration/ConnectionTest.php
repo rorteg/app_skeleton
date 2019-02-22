@@ -22,7 +22,7 @@ final class ConnectionTest extends TestCase
 
     protected function setUp()
     {
-        $config = require dirname(__DIR__) . '/../../../../config/db.php';
+        $config = require dirname(__DIR__) . '/../../../../etc/db.php';
         $dbConfig = $config['db'];
 
         $pdo = new \PDO($dbConfig['dns'], $dbConfig['username'], $dbConfig['password']);
@@ -33,7 +33,7 @@ final class ConnectionTest extends TestCase
 
     public static function setUpBeforeClass()
     {
-        $config = require dirname(__DIR__) . '/../../../../config/db.php';
+        $config = require dirname(__DIR__) . '/../../../../etc/db.php';
         $dbConfig = $config['db'];
 
         $pdo = new \PDO($dbConfig['dns'], $dbConfig['username'], $dbConfig['password']);
