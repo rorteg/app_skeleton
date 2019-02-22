@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="pt_BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <!-- Favicon icon -->
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+        <title>{% block title %}{% endblock %} Madeira Madeira Project</title>
+        {{ assets({files: ['@shelf_admin/assets/styles.css']}) }}
+        {{ assets({files: ['@js_lib/bootstrap/dist/css/bootstrap.min.css']}) }}
+        {{ assets({files: ['@shelf_admin/assets/float-chart.css']}) }}
+        {{ assets({files: ['@shelf_admin/assets/toastr.min.css']}) }}
+        {{ assets({files: ['@shelf_admin/assets/custom.css']}) }}
+        {% block head %}
+
+        <!-- Custom CSS -->
+        {% endblock %}
+
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar" data-navbarbg="skin5">
+            {% embed "@shelf_admin/layout/header.html" %}{% endembed %}
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar" data-sidebarbg="skin5">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav" class="p-t-30">
+
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="/admin/user" aria-expanded="false"><i class="mdi mdi-face"></i><span class="hide-menu">Users</span></a>
+                            <!-- <ul aria-expanded="false" class="collapse  first-level">
+                                <li class="sidebar-item"><a href="icon-material.html" class="sidebar-link"><i class="mdi mdi-emoticon"></i><span class="hide-menu"> Material Icons </span></a></li>
+                                <li class="sidebar-item"><a href="icon-fontawesome.html" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> Font Awesome Icons </span></a></li>
+                            </ul> -->
+                        </li>
+
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            {% block breadcrumb %}
+            <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-12 d-flex no-block align-items-center">
+                        <h4 class="page-title">{% block page_title %}{% endblock %}</h4>
+                        <div class="ml-auto text-right">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item active" aria-current="page"><a href="#"></a></li>
+                                    <!-- <li class="breadcrumb-item active" aria-current="page">Library</li> -->
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endblock %}
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                {% block content %}
+                <div class="starter-template">
+                    <h1>Project Example</h1>
+                    <p class="lead"></p>
+                </div>
+                {% endblock %}
+            </div>
+        </div>
+        <footer class="footer text-center">
+            Developed by Rafael Ortega Bueno.
+        </footer>
+    </div>
+
+
+    {{ assets({files: ['@js_lib/jquery/dist/jquery.min.js']}) }}
+    {{ assets({files: ['@js_lib/bootstrap/dist/js/bootstrap.min.js']}) }}
+    {{ assets({files: ['@js_lib/perfect-scrollbar/dist/js/perfect-scrollbar.jquery.js']}) }}
+    {{ assets({files: ['@js_lib/jquery-sparkline/jquery.sparkline.min.js']}) }}
+    <!--Wave Effects -->
+    {{ assets({files: ['@shelf_admin/js/dist/waves.js']}) }}
+    <!--Menu sidebar -->
+    {{ assets({files: ['@shelf_admin/js/dist/sidebar.js']}) }}
+    <!--Custom JavaScript -->
+    {{ assets({files: ['@shelf_admin/js/dist/custom.min.js']}) }}
+    <!--This page JavaScript -->
+    <!-- <script src="../../dist/js/pages/dashboards/dashboard1.js"></script> -->
+    <!-- Charts js Files -->
+    {{ assets({files: ['@shelf_admin/js/dist/excanvas.js']}) }}
+    {{ assets({files: ['@shelf_admin/js/dist/jquery.flot.js']}) }}
+    {{ assets({files: ['@shelf_admin/js/dist/jquery.flot.pie.js']}) }}
+    {{ assets({files: ['@shelf_admin/js/dist/jquery.flot.time.js']}) }}
+    {{ assets({files: ['@shelf_admin/js/dist/jquery.flot.stack.js']}) }}
+    {{ assets({files: ['@shelf_admin/js/dist/jquery.flot.crosshair.js']}) }}
+    {{ assets({files: ['@shelf_admin/js/dist/jquery.flot.tooltip.min.js']}) }}
+    {{ assets({files: ['@shelf_admin/js/dist/chart-page-init.js']}) }}
+    {{ assets({files: ['@shelf_admin/js/dist/toastr.min.js']}) }}
+    {% block js_footer %}
+    {% endblock %}
+
+    {% embed "@shelf_admin/layout/notification.html" %}{% endembed %}
+    </body>
+</html>

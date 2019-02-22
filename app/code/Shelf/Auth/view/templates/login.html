@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon.ico">
+    {% block head %}
+    <title>{% block title %}{% endblock %} Madeira Madeira Project</title>
+    <!-- Custom CSS -->
+    {{ assets({files: ['@shelf_admin/assets/styles.css']}) }}
+    {{ assets({files: ['@shelf_admin/assets/custom.css']}) }}
+    {% endblock %}
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div class="main-wrapper">
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Login box.scss -->
+    <!-- ============================================================== -->
+    <div class="auth-wrapper d-flex no-block justify-content-center align-items-center bg-dark">
+
+        <div class="auth-box border-top border-secondary">
+            <div id="loginform">
+                <div class="text-center p-t-20 p-b-20">
+                    <span class="db"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 601 90" style="enable-background:new 0 0 601 90;" xml:space="preserve"><style type="text/css">
+        .logo-mm-white{fill:#FFFFFF;}
+        .logo-mm-orange{fill:#F4831F;}
+        .logo-mm-label{fill:#00559F;}
+        .blackfriday .logo-mm-label{fill:#FFFFFF;}
+    </style><path class="logo-mm-white" d="M75.8,73L39,82.5c-6.4,1.6-13-2.2-14.6-8.6l-9.1-35.6c-1.6-6.4,2.2-13,8.6-14.6l36.8-9.5
+		c6.4-1.6,13,2.2,14.6,8.6l9.1,35.6C86.1,64.8,82.2,71.3,75.8,73z"></path><path class="logo-mm-orange" d="M87.4,60.9L74.6,9.8c-1.2-4.8-6.1-7.7-10.8-6.4l0,0L12.7,16.2C8,17.4,5,22.1,6.3,26.9L19.1,78
+		c1.2,4.8,6.1,7.7,10.8,6.4l42.6-10.6c-0.1-0.1-0.2-0.2-0.3-0.3c-1.8-1.9-4.3-2.7-7.6-2.6l0,0L40,70.6c-6.6,0-8.6-4.8-8.7-7.4
+		l-1.8-18.5h-6.6c-1.1,0-2-0.9-2-2c0-0.5,0.2-1.1,0.6-1.4l23.6-22.8c0.7-0.7,1.9-0.8,2.6-0.1l24.9,21.9c0.9,0.7,1,2,0.3,2.7
+		c-0.4,0.5-1,0.8-1.6,0.7h-5.2v17.6c0,1.1-0.9,2-2,2l-13.2-0.1L47,52.4l-4,6V35.5v-0.1l14.7,17.5l-6.9-1.5c0,0,1.4,4.5,2.4,7.9h9.2
+		V41.9c0-1.1,0.9-2,2-2h2L46.6,22.6L27.8,40.9h3.6c1,0,1.9,0.8,2,1.8l2,20.3V63c0,0.6,0.4,3.7,4.8,3.7l24.5,0.2
+		c4.5-0.2,8,1.1,10.5,3.9c0.6,0.6,1.1,1.3,1.5,2l4.3-1.1C85.8,70.5,88.6,65.7,87.4,60.9z"></path><g><path class="logo-mm-label" d="M154.1,64.1l0-24.6c0-3.9-0.5-6.6-1.6-8.1c-1.1-1.5-2.9-2.1-5.6-2.1c-2.7-0.2-5.5,0.9-7.3,2.9
+			c-1.8,2-2.6,4.7-2.6,8.2l0,23.6h-6.7l0-24.5c0-3.9-0.5-6.6-1.6-8.1c-1.1-1.5-2.9-2.1-5.6-2.1c-2.7-0.2-5.5,0.9-7.3,2.9
+			c-1.8,2-2.6,4.7-2.6,8.2l0,23.6h-6.5l0-40.6h6.2v6.7c2.5-4.2,7.2-6.6,12.1-6.4c4.5-0.2,8.6,2.1,10.6,6.2c1.5-2,3.4-3.5,5.6-4.7
+			c2.1-1,4.6-1.6,6.9-1.5c2.2-0.1,4.5,0.4,6.5,1.4c1.8,0.9,3.3,2.2,4.3,3.9c0.6,1.1,1,2.3,1.2,3.5c0.3,2.1,0.4,4.4,0.4,6.5l0,25.1
+			L154.1,64.1z"></path><path class="logo-mm-label" d="M196.2,54.7V35.6c0-4-1.3-7.1-3.7-9c-2.4-1.9-6.3-2.9-11.5-2.9c-4.9,0-8.7,1.1-11.4,3.3s-4.3,5.6-4.1,9.1v0.3
+			h6.2c-0.1-2,0.7-4,2.3-5.2c1.6-1.1,3.8-1.8,6.8-1.8c2.9,0,5.1,0.5,6.5,1.4c1.5,1,2.2,2.7,2.1,4.4c0.1,1,0,2-0.4,3
+			c-0.3,0.6-0.9,1-1.5,1.1c-2,0.5-4,0.9-6.2,1l-4.6,0.5c-4.5,0.6-7.8,1.8-10.1,3.8c-2.2,2.1-3.4,5.1-3.3,8.1c0,3.5,1.1,6.4,3.3,8.4
+			c2.2,2,5.4,3.1,9.3,3.1c2.5,0,5-0.5,7.3-1.5c2.4-1.1,4.7-2.8,6.4-4.7v0.3c-0.1,1.5,0.5,3.6,1.7,4.6c1.3,1,3,1.4,4.6,1.3
+			C196.2,64.1,196.2,55.1,196.2,54.7z M189.4,49.5c0.1,2.7-1.2,5.1-3.4,6.7c-2.5,1.8-5.6,2.8-8.7,2.6c-1.9,0.1-3.7-0.4-5.2-1.5
+			c-1.3-1.1-2-2.7-1.9-4.4c-0.1-1.6,0.5-3.1,1.6-4.3c1.5-1.1,3.2-1.9,5.2-2.1c0.8-0.1,1.9-0.3,3.4-0.5c4.2-0.5,7.2-1.2,9-2.2
+			L189.4,49.5z"></path><path class="logo-mm-label" d="M236,10.5v53.6h-6.3v-6c-1.6,1.9-3.5,3.4-5.7,4.5s-4.6,1.5-6.9,1.5c-4.8,0.2-9.4-1.8-12.4-5.4
+			c-3.1-3.6-4.7-8.6-4.7-14.7c0-6.2,1.6-11.2,4.7-14.9c3-3.6,7.6-5.7,12.4-5.5c2.4,0,5,0.5,7.2,1.4c2.1,1,4,2.6,5.5,4.4V10.5H236z
+			 M230,43.5c0-4.7-1-8.3-2.9-10.7c-2-2.4-4.9-3.5-8.7-3.5c-3.3-0.2-6.5,1.3-8.6,3.9c-2.1,2.6-3,6.3-3,11.2c0,4.3,1.1,7.7,3.1,10.2
+			c2.1,2.5,5.3,3.9,8.5,3.7c3.3,0.2,6.4-1.2,8.5-3.8C228.9,51.9,230,48.3,230,43.5z"></path><path class="logo-mm-label" d="M268,50.6h6.4c-0.5,3.9-2.5,7.4-5.6,9.9c-3.2,2.5-7.3,3.8-11.4,3.6c-5.4,0-9.7-1.8-12.8-5.3
+			c-3.1-3.5-4.7-8.4-4.7-14.5c0-6.5,1.6-11.5,4.7-15.2s7.4-5.4,12.8-5.4c5.6,0,10,1.7,13,5.1c3,3.3,4.6,8.1,4.6,14.2
+			c0,0.8,0,1.3,0,1.7s0,0.8-0.1,1h-28.1c0.1,4,1.1,7.1,3,9.2c4,3.8,10.2,4.4,14.7,1.2C266.5,54.8,267.6,52.8,268,50.6z M246.7,40.4
+			h21.4c0-3.5-0.9-6.3-2.7-8.2c-1.9-1.9-4.4-2.9-7.7-2.9c-2.8-0.1-5.6,0.9-7.6,2.9C248.1,34,247,36.8,246.7,40.4z"></path><path class="logo-mm-label" d="M278,18v-7.4h6.5V18H278z M278,64.1V23.4h6.5v40.8H278z"></path><path class="logo-mm-label" d="M290.1,64.1V24.3h6.3v7.1c0.8-2.4,2.3-4.5,4.2-6c2-1.4,4.2-2.1,6.5-2h1.1c0.2,0,0.4,0,0.7,0.1v7.1l-0.6-0.1h-1
+			c-3.5,0-6.2,1-8,2.9c-1.9,1.9-2.7,4.8-2.7,8.5V64L290.1,64.1z"></path><path class="logo-mm-label" d="M345.9,64.1V24.6H356V29c1.4-1.7,3-3.1,5-4.1c1.9-1,3.9-1.4,6.1-1.4c2.2-0.1,4.4,0.4,6.4,1.4
+			c1.9,1.1,3.5,2.5,4.6,4.4c2.5-3.7,6.7-6,11.2-5.9c4,0,7.1,1.2,9.5,3.5s3.5,5.5,3.5,9.6v27.6h-10.4V38.7c0.1-1.7-0.5-3.2-1.6-4.5
+			c-1.2-1.1-2.7-1.7-4.3-1.6c-1.9-0.1-3.6,0.7-4.9,2.1c-1.3,1.6-2,3.5-1.9,5.5v23.9h-10.3V38.7c0.1-1.7-0.4-3.2-1.5-4.5
+			c-1.1-1.1-2.6-1.7-4.2-1.6c-1.9-0.1-3.6,0.7-4.9,2.1c-1.3,1.6-2,3.5-1.8,5.6v23.9L345.9,64.1z"></path><path class="logo-mm-label" d="M480.5,10.5v53.6h-10.1v-6.6c-1.3,2-3,3.7-5.2,5c-2.1,1-4.4,1.6-6.7,1.6c-4.7,0.1-9.1-2-11.8-5.6
+			c-3-3.7-4.5-8.7-4.5-14.8s1.5-11.1,4.5-14.9c2.7-3.7,7-5.8,11.7-5.7c2.3,0,4.7,0.5,6.8,1.5c2.1,1,3.7,2.7,5,4.6V10.5H480.5z
+			 M452.9,43.2c0,3.9,0.8,6.9,2.2,8.9c1.5,2,3.9,3.2,6.5,3c2.5,0.1,5-1,6.4-3c1.5-2,2.2-5,2.2-8.9c0-3.6-0.8-6.5-2.3-8.5
+			c-1.6-2-4-3-6.5-3c-2.4-0.1-4.8,1-6.2,3C453.6,36.9,452.9,39.7,452.9,43.2z"></path><path class="logo-mm-label" d="M509.9,51.3h10.5c-0.9,3.8-3.2,7.2-6.4,9.5c-3.4,2.4-7.6,3.6-11.8,3.4c-5.8,0-10.3-1.9-13.6-5.6
+			c-3.3-3.7-5-8.8-5-15.1c0-6.2,1.7-11.3,5-14.9c3.3-3.6,7.8-5.4,13.5-5.4c6.1,0,10.7,1.8,14.1,5.3s5,8.6,5,15.2c0,0.8,0,1.3,0,1.6
+			c0,0.4,0,0.7-0.1,1h-26.4c0.1,3,0.9,5.3,2.2,6.8c1.6,1.6,3.7,2.5,5.9,2.3c1.6,0.1,3.1-0.3,4.5-1C508.4,53.6,509.4,52.5,509.9,51.3z
+			 M494.5,39.7H510c0.1-2.2-0.7-4.3-2.1-5.9c-1.6-1.4-3.6-2.2-5.7-2c-2.1-0.1-4,0.7-5.5,2.1C495.3,35.4,494.5,37.5,494.5,39.7z"></path><rect x="523.7" y="24.6" class="logo-mm-label" width="10.5" height="39.4"></rect><path class="logo-mm-label" d="M523.7,10.5v9.7h7.6c1.2-0.9,2.2-2.1,3-3.3v-6.3H523.7z"></path><path class="logo-mm-label" d="M539.3,64V24.6h9.8v6.5c1.1-2.3,2.7-4.2,4.9-5.7c2-1.3,4.2-1.9,6.5-1.9h1c0.2,0,0.4,0,0.6,0.1v10.4h-3.5
+			c-2.9,0-5.1,0.8-6.5,2.2c-1.5,1.4-2.1,3.6-2.1,6.5V64H539.3z"></path><path class="logo-mm-label" d="M596,55.7V34c0.1-3.2-1.6-6.3-4.4-8c-2.9-1.9-7.2-2.7-12.7-2.7c-5.1,0-9,1.1-11.8,3.4
+			c-2.8,2.3-4.5,5.7-4.3,9.2v0.6h9.9v-0.6c-0.1-1.4,0.6-2.7,1.8-3.5c1.5-0.9,3.1-1.3,4.9-1.2c2.3,0,4,0.4,5,1
+			c1.1,0.8,1.7,2.1,1.5,3.3c0,2-2.2,3.2-6.7,3.8c-1.8,0.2-3.2,0.4-4.3,0.6c-4.8,0.7-8.2,2-10.3,3.9c-2.1,1.9-3.1,4.6-3.1,8.3
+			c0,3.9,1.1,6.9,3.1,9c2.1,2.1,5.1,3.2,8.9,3.2c2.6,0.1,5.2-0.5,7.5-1.6c2.1-1,3.9-2.6,5.3-4.5c0,0.8,0.8,5.5,1.1,6.1h8.8
+			C596,64.1,596,56.5,596,55.7z M585.9,47.6c0.1,2.4-0.8,4.7-2.4,6.4c-1.9,1.6-4.3,2.5-6.7,2.4c-1.4,0.1-2.7-0.4-3.8-1.2
+			c-1-0.8-1.5-2.1-1.5-3.4c-0.1-1.1,0.3-2.3,1.1-3.2c1.1-0.9,2.4-1.6,3.9-1.9l3.5-0.8c2.1-0.4,4-1,6-1.9L585.9,47.6L585.9,47.6z"></path><path class="logo-mm-label" d="M439.5,55.6V33.9c0.1-3.2-1.6-6.3-4.4-8c-2.9-1.9-7.2-2.7-12.7-2.7c-5.1,0-9,1.1-11.8,3.4
+			c-2.8,2.3-4.5,5.7-4.3,9.3v0.6h9.9v-0.6c-0.1-1.4,0.6-2.7,1.8-3.5c1.5-0.9,3.1-1.3,4.9-1.2c2.3,0,4,0.4,5,1
+			c1.1,0.8,1.7,2.1,1.5,3.3c0,2-2.2,3.2-6.7,3.8c-1.8,0.2-3.2,0.4-4.3,0.6c-4.8,0.7-8.2,2-10.3,3.9c-2.1,1.9-3.1,4.6-3.1,8.3
+			c0,3.9,1.1,6.9,3.1,9c2.1,2.1,5.1,3.2,8.9,3.2c2.6,0.1,5.2-0.5,7.5-1.6c2.1-1,3.9-2.6,5.3-4.5c0,0.9,0.8,5.5,1.1,6.1h8.8
+			C439.5,64.1,439.5,56.5,439.5,55.6z M429.5,47.5c0.1,2.4-0.8,4.7-2.4,6.4c-1.9,1.6-4.3,2.5-6.7,2.4c-1.4,0.1-2.7-0.4-3.8-1.2
+			c-1-0.9-1.5-2.1-1.5-3.4c-0.1-1.1,0.3-2.3,1.1-3.2c1.1-0.9,2.4-1.6,3.9-1.9l3.5-0.8c2.1-0.4,4-1,6-1.9L429.5,47.5L429.5,47.5z"></path><path class="logo-mm-label" d="M340.5,54.7V35.6c0-4-1.3-7.1-3.7-9c-2.4-1.9-6.3-2.9-11.5-2.9c-4.9,0-8.7,1.1-11.4,3.3
+			c-2.7,2.2-4.3,5.6-4.1,9.1v0.3h6.2c-0.1-2,0.7-4,2.3-5.2c1.6-1.1,3.8-1.8,6.8-1.8c2.9,0,5.1,0.5,6.5,1.4c1.5,1,2.2,2.7,2.1,4.4
+			c0.1,1,0,2-0.4,3c-0.3,0.6-0.9,1-1.5,1.1c-2,0.5-4,0.9-6.2,1l-4.6,0.5c-4.5,0.6-7.8,1.8-10.1,3.8c-2.2,2.1-3.4,5.1-3.3,8.1
+			c0,3.5,1.1,6.4,3.3,8.4s5.4,3.1,9.3,3.1c2.5,0,5-0.5,7.3-1.5c2.4-1.1,4.7-2.8,6.4-4.7v0.3c-0.1,1.5,0.5,3.6,1.7,4.6
+			c1.3,1,3,1.4,4.6,1.3C340.5,64.1,340.5,55.1,340.5,54.7z M333.8,49.5c0.1,2.7-1.2,5.1-3.4,6.7c-2.5,1.8-5.6,2.8-8.7,2.6
+			c-1.9,0.1-3.7-0.4-5.2-1.5c-1.3-1.1-2-2.7-1.9-4.4c-0.1-1.6,0.5-3.1,1.6-4.3c1.5-1.1,3.2-1.9,5.2-2.1c0.8-0.1,1.9-0.3,3.4-0.5
+			c4.2-0.5,7.2-1.2,9-2.2L333.8,49.5z"></path></g></svg></span>
+                </div>
+                {% embed "@shelf_app/layout/flash.html" %}{% endembed %}
+                <!-- Form -->
+                <form class="form-horizontal m-t-20" id="loginform" action="/loginPost" method="post">
+                    <div class="row p-b-30">
+                        <div class="col-12">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="ti-user"></i></span>
+                                </div>
+                                <input name="username" type="text" class="form-control form-control-lg" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" required="">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-warning text-white" id="basic-addon2"><i class="ti-pencil"></i></span>
+                                </div>
+                                <input name="password" type="password" class="form-control form-control-lg" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" required="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row border-top border-secondary">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <div class="p-t-20">
+                                    <!-- <button class="btn btn-info" id="to-recover" type="button"><i class="fa fa-lock m-r-5"></i> Lost password?</button> -->
+                                    <button class="btn btn-success float-right" type="submit">Login</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div id="recoverform">
+                <div class="text-center">
+                    <span class="text-white">Enter your e-mail address below and we will send you instructions how to recover a password.</span>
+                </div>
+                <div class="row m-t-20">
+                    <!-- Form -->
+                    <form class="col-12" action="index.html">
+                        <!-- email -->
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-danger text-white" id="basic-addon1"><i class="ti-email"></i></span>
+                            </div>
+                            <input type="text" class="form-control form-control-lg" placeholder="Email Address" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                        <!-- pwd -->
+                        <div class="row m-t-20 p-t-20 border-top border-secondary">
+                            <div class="col-12">
+                                <a class="btn btn-success" href="#" id="to-login" name="action">Back To Login</a>
+                                <button class="btn btn-info float-right" type="button" name="action">Recover</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Login box.scss -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Page wrapper scss in scafholding.scss -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Page wrapper scss in scafholding.scss -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Right Sidebar -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Right Sidebar -->
+    <!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- All Required js -->
+<!-- ============================================================== -->
+{{ assets({files: ['@js_lib/jquery/dist/jquery.min.js']}) }}
+<!-- Bootstrap tether Core JavaScript -->
+{{ assets({files: ['@js_lib/popper.js/dist/umd/popper.min.js']}) }}
+{{ assets({files: ['@js_lib/bootstrap/dist/js/bootstrap.min.js']}) }}
+<!-- ============================================================== -->
+<!-- This page plugin js -->
+<!-- ============================================================== -->
+<script>
+
+    $('[data-toggle="tooltip"]').tooltip();
+    $(".preloader").fadeOut();
+    // ============================================================== 
+    // Login and Recover Password 
+    // ============================================================== 
+    $('#to-recover').on("click", function() {
+        $("#loginform").slideUp();
+        $("#recoverform").fadeIn();
+    });
+    $('#to-login').click(function(){
+
+        $("#recoverform").hide();
+        $("#loginform").fadeIn();
+    });
+</script>
+
+</body>
+
+</html>
