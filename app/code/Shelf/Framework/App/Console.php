@@ -50,9 +50,10 @@ class Console implements AppInterface
 
         if (isset($config['console']['commands'])) {
             foreach ($config['console']['commands'] as $command) {
-                $application->add(
-                    $this->serviceManager->has($command) ? $this->serviceManager->get($command) : new $command
-                );
+                $commandInstance = $this->serviceManager->has($command) ?
+                    $this->serviceManager->get($command) : new $command;
+
+                $application->add($commandInstance);
             }
         }
 

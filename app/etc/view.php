@@ -3,7 +3,7 @@
 return [
     'view' => [
         // Twig Cache
-        //'cache' => false,
+        //'cache' => BP . '/var/cache',
         // Twig Debug
         'debug' => false,
         'twig_extensions' => [
