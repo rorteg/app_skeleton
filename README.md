@@ -27,7 +27,7 @@ vim phinx.yml
 ```
 
 ```
-vim app/config/db.php
+vim app/etc/db.php
 ```
 
 ### 3 - Perform the database migration
