@@ -35,14 +35,12 @@ class Http implements AppInterface
 
     /**
      * Http constructor.
-     * @param $routeConfig
      * @param ServiceManager $serviceManager
      */
     public function __construct(
-        ServiceManager $serviceManager,
-        $routeConfig
+        ServiceManager $serviceManager
     ) {
-        $this->routeConfig = $routeConfig;
+        $this->routeConfig = $serviceManager->get('config')['routes'];
         $this->serviceManager = $serviceManager;
 
         /** @var ApplicationStrategy $strategy */
