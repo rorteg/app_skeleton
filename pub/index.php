@@ -19,5 +19,5 @@ HTML;
 }
 
 $bootstrap = \Shelf\Framework\App\Bootstrap::create($serviceManager, BP);
-$application = $bootstrap->createApplication(Http::class, $bootstrap->getRoutes());
+$application = $bootstrap->createApplication(Http::class);
 $bootstrap->run($application);
